@@ -3,405 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPL Fantasy Leaderboard 2026 — The Dugout</title>
+<title>The Dugout — IPL Fantasy Leaderboard 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #F0A500;
-    --silver: #A8A8A8;
-    --bronze: #C47B3A;
-    --bg: #0A0A0F;
-    --surface: #12121A;
-    --card: #1A1A26;
-    --border: rgba(255,255,255,0.07);
-    --text: #F0EDE8;
-    --muted: #7A7A8C;
-    --accent: #F0A500;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+:root {
+  --gold:#F0A500; --silver:#A8A8A8; --bronze:#C47B3A;
+  --bg:#0A0A0F; --surface:#12121A; --card:#1A1A26; --card2:#1E1E2E;
+  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
+  --text:#F0EDE8; --muted:#7A7A8C; --accent:#F0A500;
+  --green:#4CAF7D; --red:#E05C5C; --blue:#5BA3E8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(240,165,0,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(100,80,200,.05) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:960px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+header{text-align:center;padding:60px 20px 36px}
+.trophy{font-size:40px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.site-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,11vw,96px);letter-spacing:4px;line-height:.9;background:linear-gradient(135deg,#F0A500 0%,#FFD166 40%,#F0A500 70%,#C47B3A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.site-sub{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.match-badge{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:6px 16px;border:1px solid rgba(240,165,0,.3);border-radius:20px;font-size:12px;color:var(--gold);letter-spacing:1px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-  /* ── BACKGROUND TEXTURE ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(240,165,0,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(100,80,200,0.05) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
+.tabs{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:12px;margin:32px 0 24px;border:1px solid var(--border)}
+.tab{flex:1;padding:10px 6px;border:none;border-radius:9px;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.3px;white-space:nowrap}
+.tab.active{background:var(--card);color:var(--text);box-shadow:0 1px 8px rgba(0,0,0,.4)}
 
-  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+.podium{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:12px;margin-bottom:24px;align-items:end}
+.podium-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 14px;text-align:center;cursor:pointer;transition:transform .2s,border-color .2s;animation:fadeUp .5s ease both}
+.podium-card:hover{transform:translateY(-4px)}
+.podium-card.p1{border-color:rgba(240,165,0,.4);background:linear-gradient(160deg,#1E1A0A 0%,#1A1A26 100%);animation-delay:.1s}
+.podium-card.p2{animation-delay:.2s}
+.podium-card.p3{animation-delay:.3s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.podium-medal{font-size:26px;margin-bottom:6px}
+.podium-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,4vw,30px);letter-spacing:2px}
+.p1 .podium-name{color:var(--gold)}.p2 .podium-name{color:var(--silver)}.p3 .podium-name{color:var(--bronze)}
+.podium-pts{font-size:clamp(30px,6vw,40px);font-weight:600;line-height:1;margin:6px 0 2px}
+.p1 .podium-pts{color:var(--gold)}
+.podium-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.podium-meta{font-size:11px;color:var(--muted);margin-top:8px}
 
-  /* ── HEADER ── */
-  header {
-    text-align: center;
-    padding: 60px 20px 40px;
-    position: relative;
-  }
-  .trophy-line {
-    font-size: 40px;
-    margin-bottom: 12px;
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.lb-list{display:flex;flex-direction:column;gap:8px}
+.lb-row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all .2s;animation:fadeUp .4s ease both}
+.lb-row:hover{border-color:rgba(240,165,0,.25);transform:translateX(4px)}
+.lb-rank{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--muted);text-align:center}
+.lb-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px}
+.lb-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.lb-pts{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--gold);text-align:right}
+.lb-pts-label{font-size:10px;color:var(--muted);text-align:right;letter-spacing:2px}
+.lb-bar-wrap{grid-column:1/-1;margin-top:-2px;height:2px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
+.lb-bar{height:100%;background:linear-gradient(90deg,var(--gold),#FFD166);border-radius:2px;transition:width 1s ease}
 
-  .site-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 10vw, 88px);
-    letter-spacing: 4px;
-    line-height: 0.9;
-    background: linear-gradient(135deg, #F0A500 0%, #FFD166 40%, #F0A500 70%, #C47B3A 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .site-sub {
-    font-size: 13px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 8px;
-  }
-  .match-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 20px;
-    padding: 6px 16px;
-    border: 1px solid rgba(240,165,0,0.3);
-    border-radius: 20px;
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 1px;
-  }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 1.5s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--muted);margin-bottom:14px;margin-top:28px}
+.section-title:first-child{margin-top:0}
+.chart-wrap{position:relative;width:100%;height:240px}
 
-  /* ── TABS ── */
-  .tabs {
-    display: flex;
-    gap: 4px;
-    padding: 4px;
-    background: var(--surface);
-    border-radius: 12px;
-    margin: 32px 0 24px;
-    border: 1px solid var(--border);
-  }
-  .tab {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 9px;
-    background: transparent;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.5px;
-  }
-  .tab.active {
-    background: var(--card);
-    color: var(--text);
-    box-shadow: 0 1px 8px rgba(0,0,0,0.4);
-  }
+.value-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:8px}
+.value-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;animation:fadeUp .4s ease both}
+.value-card.gold-card{border-color:rgba(240,165,0,.35);background:linear-gradient(135deg,#1E1A0A,#1A1A26)}
+.value-card.bust-card{border-color:rgba(224,92,92,.25);background:linear-gradient(135deg,#1A0A0A,#1A1A26)}
+.vc-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.vc-label span{padding:2px 8px;border-radius:10px;font-size:9px;font-weight:600}
+.label-best{background:rgba(76,175,125,.15);color:var(--green)}
+.label-bust{background:rgba(224,92,92,.15);color:var(--red)}
+.label-eff{background:rgba(91,163,232,.15);color:var(--blue)}
+.vc-player{font-size:15px;font-weight:600;color:var(--text)}
+.vc-owner{font-size:11px;color:var(--muted);margin-top:2px}
+.vc-stat{font-family:'Bebas Neue',sans-serif;font-size:34px;margin-top:8px}
+.vc-stat.pos{color:var(--green)}.vc-stat.neg{color:var(--red)}.vc-stat.neu{color:var(--gold)}
+.vc-detail{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}
 
-  /* ── PODIUM ── */
-  .podium {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr 1fr;
-    gap: 12px;
-    margin-bottom: 28px;
-    align-items: end;
-  }
-  .podium-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 16px;
-    text-align: center;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s;
-    animation: fadeUp 0.5s ease both;
-  }
-  .podium-card:hover { transform: translateY(-4px); }
-  .podium-card.p1 {
-    border-color: rgba(240,165,0,0.4);
-    background: linear-gradient(160deg, #1E1A0A 0%, #1A1A26 100%);
-    animation-delay: 0.1s;
-  }
-  .podium-card.p2 { animation-delay: 0.2s; }
-  .podium-card.p3 { animation-delay: 0.3s; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.vb-table{width:100%;border-collapse:collapse;font-size:13px}
+.vb-table th{text-align:left;padding:10px 12px;color:var(--muted);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:500;cursor:pointer;user-select:none;white-space:nowrap}
+.vb-table th:hover{color:var(--text)}
+.vb-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.vb-table tr:last-child td{border-bottom:none}
+.vb-table tr:hover td{background:rgba(255,255,255,.02)}
+.vb-table td:nth-child(3),.vb-table td:nth-child(4),.vb-table td:nth-child(5){text-align:right}
+.vb-table th:nth-child(3),.vb-table th:nth-child(4),.vb-table th:nth-child(5){text-align:right}
+.sort-arrow{font-size:9px;margin-left:2px;opacity:.6}
+.vr-bar-wrap{width:48px;height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:6px}
+.vr-bar{height:100%;border-radius:3px}
 
-  .podium-medal { font-size: 28px; margin-bottom: 8px; }
-  .podium-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 2px;
-  }
-  .p1 .podium-name { color: var(--gold); }
-  .p2 .podium-name { color: var(--silver); }
-  .p3 .podium-name { color: var(--bronze); }
-  .podium-pts {
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 1;
-    margin: 6px 0 2px;
-  }
-  .p1 .podium-pts { color: var(--gold); }
-  .podium-label { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
-  .podium-meta { font-size: 11px; color: var(--muted); margin-top: 8px; }
+.squad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.squad-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .2s;animation:fadeUp .4s ease both}
+.squad-card:hover{border-color:rgba(240,165,0,.3);transform:translateY(-2px)}
+.sc-header{padding:14px 16px 10px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sc-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px}
+.sc-pts{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold)}
+.sc-body{padding:10px 14px 14px}
+.player-chip{display:inline-block;margin:2px 3px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid var(--border);color:var(--muted)}
+.player-chip.has-pts{color:var(--text);border-color:rgba(240,165,0,.25);background:rgba(240,165,0,.07)}
 
-  /* ── LEADERBOARD LIST ── */
-  .lb-list { display: flex; flex-direction: column; gap: 8px; }
-  .lb-row {
-    display: grid;
-    grid-template-columns: 48px 1fr auto;
-    align-items: center;
-    gap: 16px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 18px;
-    cursor: pointer;
-    transition: all 0.2s;
-    animation: fadeUp 0.4s ease both;
-    text-decoration: none;
-    color: inherit;
-  }
-  .lb-row:hover { border-color: rgba(240,165,0,0.25); transform: translateX(4px); }
-  .lb-rank {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--muted);
-    text-align: center;
-  }
-  .lb-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-  }
-  .lb-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .lb-pts {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--gold);
-    text-align: right;
-  }
-  .lb-pts-label { font-size: 10px; color: var(--muted); text-align: right; letter-spacing: 2px; }
-  .lb-bar-wrap { grid-column: 1/-1; margin-top: -4px; height: 2px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
-  .lb-bar { height: 100%; background: linear-gradient(90deg, var(--gold), #FFD166); border-radius: 2px; transition: width 1s ease; }
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;justify-content:center;align-items:flex-end;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:24px 24px 0 0;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;padding:24px 22px 48px;animation:slideUp .3s ease;position:relative}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:40px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px}
+.modal-owner{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:2px;color:var(--gold)}
+.modal-total{font-size:13px;color:var(--muted);margin-bottom:20px}
+.modal-player{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.modal-player:last-child{border-bottom:none}
+.mp-name{font-size:14px;font-weight:500}
+.mp-cost{font-size:11px;color:var(--muted)}
+.mp-pts{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold)}
+.mp-pts.zero{color:var(--muted)}
+.mp-vr{font-size:11px;padding:2px 7px;border-radius:6px;text-align:center;min-width:50px;font-weight:500}
+.vr-good{background:rgba(76,175,125,.15);color:var(--green)}
+.vr-mid{background:rgba(240,165,0,.12);color:var(--gold)}
+.vr-bad{background:rgba(224,92,92,.12);color:var(--red)}
+.close-btn{position:absolute;top:22px;right:20px;background:var(--card);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
 
-  /* ── CHART ── */
-  .chart-section { margin: 32px 0; }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: var(--muted);
-    margin-bottom: 16px;
-  }
-  .chart-wrap { position: relative; width: 100%; height: 240px; }
+.rb{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:600;letter-spacing:.5px;white-space:nowrap}
+.rb-bat{background:rgba(56,130,221,.15);color:#5BA3E8}
+.rb-bowl{background:rgba(99,153,34,.15);color:#82C44A}
+.rb-ar{background:rgba(240,165,0,.12);color:#F0A500}
+.rb-wk{background:rgba(212,83,126,.15);color:#E87AAF}
 
-  /* ── SQUAD VIEW ── */
-  .squad-section { display: none; }
-  .squad-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-  .squad-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.2s;
-    animation: fadeUp 0.4s ease both;
-  }
-  .squad-card:hover { border-color: rgba(240,165,0,0.3); transform: translateY(-2px); }
-  .squad-card-header {
-    padding: 16px 18px 12px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .squad-card-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 1px;
-  }
-  .squad-card-pts {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--gold);
-  }
-  .squad-card-body { padding: 12px 18px 16px; }
-  .squad-player-chip {
-    display: inline-block;
-    margin: 3px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    transition: all 0.15s;
-  }
-  .squad-player-chip.has-pts {
-    color: var(--text);
-    border-color: rgba(240,165,0,0.25);
-    background: rgba(240,165,0,0.07);
-  }
+footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:12px;letter-spacing:1px;border-top:1px solid var(--border);margin-top:60px}
 
-  /* ── PLAYER MODAL ── */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 100;
-    justify-content: center;
-    align-items: flex-end;
-    backdrop-filter: blur(4px);
-  }
-  .modal-overlay.open { display: flex; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px 24px 0 0;
-    width: 100%;
-    max-width: 600px;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 24px 24px 40px;
-    animation: slideUp 0.3s ease;
-  }
-  @keyframes slideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 0 auto 20px; }
-  .modal-owner {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    letter-spacing: 2px;
-    color: var(--gold);
-  }
-  .modal-total { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
-  .modal-player {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .modal-player:last-child { border-bottom: none; }
-  .modal-pname { font-size: 14px; font-weight: 500; }
-  .modal-pts { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); }
-  .modal-pts.zero { color: var(--muted); }
-  .close-btn {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 16px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* ── BADGES ── */
-  .role-badge {
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .rb-bat { background: rgba(56,130,221,0.15); color: #5BA3E8; }
-  .rb-bowl { background: rgba(99,153,34,0.15); color: #82C44A; }
-  .rb-ar { background: rgba(240,165,0,0.12); color: #F0A500; }
-  .rb-wk { background: rgba(212,83,126,0.15); color: #E87AAF; }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted);
-    font-size: 12px;
-    letter-spacing: 1px;
-    border-top: 1px solid var(--border);
-    margin-top: 60px;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 480px) {
-    .podium { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-    .podium-pts { font-size: 28px; }
-    .squad-grid { grid-template-columns: 1fr; }
-  }
+@media(max-width:500px){
+  .podium{gap:6px}
+  .tab{font-size:11px;padding:9px 3px}
+  .squad-grid,.value-grid{grid-template-columns:1fr}
+  .modal-player{grid-template-columns:1fr auto auto}
+  .mp-vr{display:none}
+  .vb-table td:nth-child(1){max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
 </style>
 </head>
 <body>
-
 <div class="container">
   <header>
-    <div class="trophy-line">🏆</div>
+    <div class="trophy">🏆</div>
     <div class="site-title">The Dugout</div>
     <div class="site-sub">IPL Fantasy Leaderboard 2026 &bull; Mock Auction</div>
-    <div class="match-badge"><span class="dot"></span> Live after Match 3 &bull; Updated 30 Mar 2026</div>
+    <div class="match-badge"><span class="dot"></span>Live after Match 4 &bull; Updated 30 Mar 2026</div>
   </header>
 
   <div class="tabs">
     <button class="tab active" onclick="showTab('standings',this)">Standings</button>
     <button class="tab" onclick="showTab('squads',this)">Squads</button>
-    <button class="tab" onclick="showTab('chart',this)">Chart</button>
+    <button class="tab" onclick="showTab('stats',this)">Stats</button>
+    <button class="tab" onclick="showTab('value',this)">Value Buy</button>
   </div>
 
-  <!-- STANDINGS TAB -->
   <div id="tab-standings">
     <div class="podium" id="podium"></div>
     <div class="lb-list" id="lbList"></div>
   </div>
 
-  <!-- SQUADS TAB -->
   <div id="tab-squads" style="display:none">
     <div class="squad-grid" id="squadGrid"></div>
   </div>
 
-  <!-- CHART TAB -->
-  <div id="tab-chart" style="display:none">
-    <div class="chart-section">
-      <div class="section-title">Points Breakdown</div>
-      <div class="chart-wrap"><canvas id="mainChart"></canvas></div>
+  <div id="tab-stats" style="display:none">
+    <div class="section-title">Points by team</div>
+    <div class="chart-wrap"><canvas id="teamChart"></canvas></div>
+    <div class="section-title">Top 10 scorers</div>
+    <div id="topScorers"></div>
+  </div>
+
+  <div id="tab-value" style="display:none">
+    <div class="section-title">Highlights</div>
+    <div class="value-grid" id="valueHighlights"></div>
+    <div class="section-title">Full value table</div>
+    <div style="overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:4px 0">
+      <table class="vb-table" id="valueTable">
+        <thead><tr>
+          <th onclick="sortTable('name')">Player <span class="sort-arrow" id="arr-name"></span></th>
+          <th onclick="sortTable('owner')">Owner <span class="sort-arrow" id="arr-owner"></span></th>
+          <th onclick="sortTable('price')">Price <span class="sort-arrow" id="arr-price"></span></th>
+          <th onclick="sortTable('pts')">Points <span class="sort-arrow" id="arr-pts"></span></th>
+          <th onclick="sortTable('vr')">Pts/Cr <span class="sort-arrow" id="arr-vr">▼</span></th>
+        </tr></thead>
+        <tbody id="valueTableBody"></tbody>
+      </table>
     </div>
-    <div class="chart-section" style="margin-top:32px">
-      <div class="section-title">Top Scorers (All Squads)</div>
-      <div id="topScorers"></div>
-    </div>
+    <div style="font-size:11px;color:var(--muted);margin-top:10px;padding:0 4px">Pts/Cr = fantasy points per crore spent. Higher = better value. Only players with points shown.</div>
   </div>
 </div>
 
-<!-- PLAYER MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal" style="position:relative">
+  <div class="modal">
     <button class="close-btn" onclick="closeModal()">✕</button>
     <div class="modal-handle"></div>
     <div class="modal-owner" id="modalOwner"></div>
@@ -410,158 +199,217 @@
   </div>
 </div>
 
-<footer>
-  The Dugout &bull; IPL Fantasy 2026 &bull; Built with love for the group 🏏
-</footer>
+<footer>The Dugout &bull; IPL Fantasy 2026 &bull; Built with love for the group 🏏</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const SQUADS = {
-  Lokesh:  ["Prabhsimran Singh","Matheesha Pathirana","Navdeep Saini","Jasprit Bumrah","Ravi Bishnoi","Riyan Parag","Ravindra Jadeja","Wanindu Hasaranga","Liam Livingstone","Kartik Sharma","Tristan Stubbs","Cameron Green","Dhruv Jurel","Digvesh Rathi","Will Jacks","Vipraj Nigam","Vaibhav Arora","Auqib Nabi","Mangesh Yadav"],
-  Tharun:  ["Sai Sudharsan","Suryakumar Yadav","Varun Chakravarthy","Trent Boult","T Natarajan","Yashasvi Jaiswal","Mitchell Marsh","Priyansh Arya","Quinton de Kock","Ayush Mhatre","Angkrish Raghuvanshi","Glenn Phillips","Sandeep Sharma","Nandre Burger","Nitish Rana","Brydon Carse"],
-  Gopi:    ["Rajat Patidar","Ruturaj Gaikwad","Noor Ahmad","Khaleel Ahmed","Deepak Chahar","Yash Dayal","Tilak Varma","Abhishek Sharma","Ryan Rickelton","Jitesh Sharma","Akeal Hosein","Lockie Ferguson","Rahul Chahar","Vignesh Puthur","Rachin Ravindra","Romario Shepherd","Rahul Tewatia","Manimaran Siddharth"],
-  Moheeth: ["KL Rahul","Heinrich Klaasen","Travis Head","Jofra Archer","Mohammed Siraj","Kagiso Rabada","Jason Holder","Sunil Narine","M Shahrukh Khan","Rinku Singh","Sanju Samson","Abishek Porel","Tushar Deshpande","Saurabh Dubey","Shashank Singh","Shardul Thakur","Harshal Patel","Sai Kishore","Ayush Badoni","Abdul Samad"],
-  Mama:    ["Shreyas Iyer","Jos Buttler","Phil Salt","Rashid Khan","Prasidh Krishna","Axar Patel","Pat Cummins","Krunal Pandya","Prashant Veer","Pathum Nissanka","Aniket Verma","Spencer Johnson","Vijaykumar Vyshak","Rahul Tripathi","Akash Singh","Arshad Khan"],
-  Vikki:   ["Virat Kohli","Nicholas Pooran","Rohit Sharma","Ishan Kishan","Mitchell Starc","Avesh Khan","Shivam Dube","Azmatullah Omarzai","Venkatesh Iyer","Mitchell Santner","Lungi Ngidi","Marcus Stoinis","Ashutosh Sharma","Anuj Rawat","Karun Nair","Ashwani Kumar"],
-  Ambu:    ["Aiden Markram","Vaibhav Sooryavanshi","Arshdeep Singh","Yuzvendra Chahal","Bhuvneshwar Kumar","Hardik Pandya","Dasun Shanaka","Nitish Kumar Reddy","Finn Allen","Sherfane Rutherford","Shimron Hetmyer","MS Dhoni","Jaydev Unadkat","Suyash Sharma","Prithvi Shaw","Umran Malik","Yash Thakur","Kamindu Mendis","Naman Dhir","Harpreet Brar"],
-  Ashish:  ["Shubman Gill","Dewal Brevis","Rishabh Pant","Kuldeep Yadav","Mukesh Kumar","Josh Hazlewood","Mohammed Shami","Washington Sundar","Marco Jansen","Ajinkya Rahane","Tim David","Matt Henry","Mayank Yadav","Ramandeep Singh","Jacob Bethell","Urvil Patel","Devdutt Padikkal","Mohsin Khan","Sameer Rizvi","Anshul Kamboj"]
-};
+const SQUADS={Lokesh:["Prabhsimran Singh","Matheesha Pathirana","Navdeep Saini","Jasprit Bumrah","Ravi Bishnoi","Riyan Parag","Ravindra Jadeja","Wanindu Hasaranga","Liam Livingstone","Kartik Sharma","Tristan Stubbs","Cameron Green","Dhruv Jurel","Digvesh Rathi","Will Jacks","Vipraj Nigam","Vaibhav Arora","Auqib Nabi","Mangesh Yadav"],Tharun:["Sai Sudharsan","Suryakumar Yadav","Varun Chakravarthy","Trent Boult","T Natarajan","Yashasvi Jaiswal","Mitchell Marsh","Priyansh Arya","Quinton de Kock","Ayush Mhatre","Angkrish Raghuvanshi","Glenn Phillips","Sandeep Sharma","Nandre Burger","Nitish Rana","Brydon Carse"],Gopi:["Rajat Patidar","Ruturaj Gaikwad","Noor Ahmad","Khaleel Ahmed","Deepak Chahar","Yash Dayal","Tilak Varma","Abhishek Sharma","Ryan Rickelton","Jitesh Sharma","Akeal Hosein","Lockie Ferguson","Rahul Chahar","Vignesh Puthur","Rachin Ravindra","Romario Shepherd","Rahul Tewatia","Manimaran Siddharth"],Moheeth:["KL Rahul","Heinrich Klaasen","Travis Head","Jofra Archer","Mohammed Siraj","Kagiso Rabada","Jason Holder","Sunil Narine","M Shahrukh Khan","Rinku Singh","Sanju Samson","Abishek Porel","Tushar Deshpande","Saurabh Dubey","Shashank Singh","Shardul Thakur","Harshal Patel","Sai Kishore","Ayush Badoni","Abdul Samad"],Mama:["Shreyas Iyer","Jos Buttler","Phil Salt","Rashid Khan","Prasidh Krishna","Axar Patel","Pat Cummins","Krunal Pandya","Prashant Veer","Pathum Nissanka","Aniket Verma","Spencer Johnson","Vijaykumar Vyshak","Rahul Tripathi","Akash Singh","Arshad Khan"],Vikki:["Virat Kohli","Nicholas Pooran","Rohit Sharma","Ishan Kishan","Mitchell Starc","Avesh Khan","Shivam Dube","Azmatullah Omarzai","Venkatesh Iyer","Mitchell Santner","Lungi Ngidi","Marcus Stoinis","Ashutosh Sharma","Anuj Rawat","Karun Nair","Ashwani Kumar"],Ambu:["Aiden Markram","Vaibhav Sooryavanshi","Arshdeep Singh","Yuzvendra Chahal","Bhuvneshwar Kumar","Hardik Pandya","Dasun Shanaka","Nitish Kumar Reddy","Finn Allen","Sherfane Rutherford","Shimron Hetmyer","MS Dhoni","Jaydev Unadkat","Suyash Sharma","Prithvi Shaw","Umran Malik","Yash Thakur","Kamindu Mendis","Naman Dhir","Harpreet Brar"],Ashish:["Shubman Gill","Dewal Brevis","Rishabh Pant","Kuldeep Yadav","Mukesh Kumar","Josh Hazlewood","Mohammed Shami","Washington Sundar","Marco Jansen","Ajinkya Rahane","Tim David","Matt Henry","Mayank Yadav","Ramandeep Singh","Jacob Bethell","Urvil Patel","Devdutt Padikkal","Mohsin Khan","Sameer Rizvi","Anshul Kamboj"]};
 
-const ROLES = {"Prabhsimran Singh":"bat","Matheesha Pathirana":"bowl","Navdeep Saini":"bowl","Jasprit Bumrah":"bowl","Ravi Bishnoi":"bowl","Riyan Parag":"ar","Ravindra Jadeja":"ar","Wanindu Hasaranga":"ar","Liam Livingstone":"ar","Kartik Sharma":"bat","Tristan Stubbs":"bat","Cameron Green":"ar","Dhruv Jurel":"wk","Digvesh Rathi":"bowl","Will Jacks":"ar","Vipraj Nigam":"bowl","Vaibhav Arora":"bowl","Auqib Nabi":"ar","Mangesh Yadav":"bowl","Sai Sudharsan":"bat","Suryakumar Yadav":"bat","Varun Chakravarthy":"bowl","Trent Boult":"bowl","T Natarajan":"bowl","Yashasvi Jaiswal":"bat","Mitchell Marsh":"ar","Priyansh Arya":"bat","Quinton de Kock":"wk","Ayush Mhatre":"bat","Angkrish Raghuvanshi":"bat","Glenn Phillips":"ar","Sandeep Sharma":"bowl","Nandre Burger":"bowl","Nitish Rana":"bat","Brydon Carse":"ar","Rajat Patidar":"bat","Ruturaj Gaikwad":"bat","Noor Ahmad":"bowl","Khaleel Ahmed":"bowl","Deepak Chahar":"ar","Yash Dayal":"bowl","Tilak Varma":"bat","Abhishek Sharma":"ar","Ryan Rickelton":"wk","Jitesh Sharma":"wk","Akeal Hosein":"ar","Lockie Ferguson":"bowl","Rahul Chahar":"bowl","Vignesh Puthur":"bowl","Rachin Ravindra":"bat","Romario Shepherd":"ar","Rahul Tewatia":"ar","Manimaran Siddharth":"bowl","KL Rahul":"wk","Heinrich Klaasen":"wk","Travis Head":"bat","Jofra Archer":"bowl","Mohammed Siraj":"bowl","Kagiso Rabada":"bowl","Jason Holder":"ar","Sunil Narine":"ar","M Shahrukh Khan":"bat","Rinku Singh":"bat","Sanju Samson":"wk","Abishek Porel":"wk","Tushar Deshpande":"bowl","Saurabh Dubey":"bowl","Shashank Singh":"bat","Shardul Thakur":"ar","Harshal Patel":"ar","Sai Kishore":"bowl","Ayush Badoni":"bat","Abdul Samad":"ar","Shreyas Iyer":"bat","Jos Buttler":"wk","Phil Salt":"wk","Rashid Khan":"ar","Prasidh Krishna":"bowl","Axar Patel":"ar","Pat Cummins":"ar","Krunal Pandya":"ar","Prashant Veer":"bowl","Pathum Nissanka":"bat","Aniket Verma":"bat","Spencer Johnson":"bowl","Vijaykumar Vyshak":"bowl","Rahul Tripathi":"bat","Akash Singh":"bowl","Arshad Khan":"bowl","Virat Kohli":"bat","Nicholas Pooran":"wk","Rohit Sharma":"bat","Ishan Kishan":"wk","Mitchell Starc":"bowl","Avesh Khan":"bowl","Shivam Dube":"ar","Azmatullah Omarzai":"ar","Venkatesh Iyer":"ar","Mitchell Santner":"ar","Lungi Ngidi":"bowl","Marcus Stoinis":"ar","Ashutosh Sharma":"ar","Anuj Rawat":"wk","Karun Nair":"bat","Ashwani Kumar":"bowl","Aiden Markram":"ar","Vaibhav Sooryavanshi":"bat","Arshdeep Singh":"bowl","Yuzvendra Chahal":"bowl","Bhuvneshwar Kumar":"bowl","Hardik Pandya":"ar","Dasun Shanaka":"ar","Nitish Kumar Reddy":"ar","Finn Allen":"wk","Sherfane Rutherford":"bat","Shimron Hetmyer":"bat","MS Dhoni":"wk","Jaydev Unadkat":"bowl","Suyash Sharma":"bowl","Prithvi Shaw":"bat","Umran Malik":"bowl","Yash Thakur":"bowl","Kamindu Mendis":"ar","Naman Dhir":"bat","Harpreet Brar":"ar","Shubman Gill":"bat","Dewal Brevis":"bat","Rishabh Pant":"wk","Kuldeep Yadav":"bowl","Mukesh Kumar":"bowl","Josh Hazlewood":"bowl","Mohammed Shami":"bowl","Washington Sundar":"ar","Marco Jansen":"ar","Ajinkya Rahane":"bat","Tim David":"bat","Matt Henry":"bowl","Mayank Yadav":"bowl","Ramandeep Singh":"ar","Jacob Bethell":"ar","Urvil Patel":"bat","Devdutt Padikkal":"bat","Mohsin Khan":"bowl","Sameer Rizvi":"bat","Anshul Kamboj":"bowl"};
+const ROLES={"Prabhsimran Singh":"bat","Matheesha Pathirana":"bowl","Navdeep Saini":"bowl","Jasprit Bumrah":"bowl","Ravi Bishnoi":"bowl","Riyan Parag":"ar","Ravindra Jadeja":"ar","Wanindu Hasaranga":"ar","Liam Livingstone":"ar","Kartik Sharma":"bat","Tristan Stubbs":"bat","Cameron Green":"ar","Dhruv Jurel":"wk","Digvesh Rathi":"bowl","Will Jacks":"ar","Vipraj Nigam":"bowl","Vaibhav Arora":"bowl","Auqib Nabi":"ar","Mangesh Yadav":"bowl","Sai Sudharsan":"bat","Suryakumar Yadav":"bat","Varun Chakravarthy":"bowl","Trent Boult":"bowl","T Natarajan":"bowl","Yashasvi Jaiswal":"bat","Mitchell Marsh":"ar","Priyansh Arya":"bat","Quinton de Kock":"wk","Ayush Mhatre":"bat","Angkrish Raghuvanshi":"bat","Glenn Phillips":"ar","Sandeep Sharma":"bowl","Nandre Burger":"bowl","Nitish Rana":"bat","Brydon Carse":"ar","Rajat Patidar":"bat","Ruturaj Gaikwad":"bat","Noor Ahmad":"bowl","Khaleel Ahmed":"bowl","Deepak Chahar":"ar","Yash Dayal":"bowl","Tilak Varma":"bat","Abhishek Sharma":"ar","Ryan Rickelton":"wk","Jitesh Sharma":"wk","Akeal Hosein":"ar","Lockie Ferguson":"bowl","Rahul Chahar":"bowl","Vignesh Puthur":"bowl","Rachin Ravindra":"bat","Romario Shepherd":"ar","Rahul Tewatia":"ar","Manimaran Siddharth":"bowl","KL Rahul":"wk","Heinrich Klaasen":"wk","Travis Head":"bat","Jofra Archer":"bowl","Mohammed Siraj":"bowl","Kagiso Rabada":"bowl","Jason Holder":"ar","Sunil Narine":"ar","M Shahrukh Khan":"bat","Rinku Singh":"bat","Sanju Samson":"wk","Abishek Porel":"wk","Tushar Deshpande":"bowl","Saurabh Dubey":"bowl","Shashank Singh":"bat","Shardul Thakur":"ar","Harshal Patel":"ar","Sai Kishore":"bowl","Ayush Badoni":"bat","Abdul Samad":"ar","Shreyas Iyer":"bat","Jos Buttler":"wk","Phil Salt":"wk","Rashid Khan":"ar","Prasidh Krishna":"bowl","Axar Patel":"ar","Pat Cummins":"ar","Krunal Pandya":"ar","Prashant Veer":"bowl","Pathum Nissanka":"bat","Aniket Verma":"bat","Spencer Johnson":"bowl","Vijaykumar Vyshak":"bowl","Rahul Tripathi":"bat","Akash Singh":"bowl","Arshad Khan":"bowl","Virat Kohli":"bat","Nicholas Pooran":"wk","Rohit Sharma":"bat","Ishan Kishan":"wk","Mitchell Starc":"bowl","Avesh Khan":"bowl","Shivam Dube":"ar","Azmatullah Omarzai":"ar","Venkatesh Iyer":"ar","Mitchell Santner":"ar","Lungi Ngidi":"bowl","Marcus Stoinis":"ar","Ashutosh Sharma":"ar","Anuj Rawat":"wk","Karun Nair":"bat","Ashwani Kumar":"bowl","Aiden Markram":"ar","Vaibhav Sooryavanshi":"bat","Arshdeep Singh":"bowl","Yuzvendra Chahal":"bowl","Bhuvneshwar Kumar":"bowl","Hardik Pandya":"ar","Dasun Shanaka":"ar","Nitish Kumar Reddy":"ar","Finn Allen":"wk","Sherfane Rutherford":"bat","Shimron Hetmyer":"bat","MS Dhoni":"wk","Jaydev Unadkat":"bowl","Suyash Sharma":"bowl","Prithvi Shaw":"bat","Umran Malik":"bowl","Yash Thakur":"bowl","Kamindu Mendis":"ar","Naman Dhir":"bat","Harpreet Brar":"ar","Shubman Gill":"bat","Dewal Brevis":"bat","Rishabh Pant":"wk","Kuldeep Yadav":"bowl","Mukesh Kumar":"bowl","Josh Hazlewood":"bowl","Mohammed Shami":"bowl","Washington Sundar":"ar","Marco Jansen":"ar","Ajinkya Rahane":"bat","Tim David":"bat","Matt Henry":"bowl","Mayank Yadav":"bowl","Ramandeep Singh":"ar","Jacob Bethell":"ar","Urvil Patel":"bat","Devdutt Padikkal":"bat","Mohsin Khan":"bowl","Sameer Rizvi":"bat","Anshul Kamboj":"bowl"};
 
-const POINTS = {"Ryan Rickelton":119,"Ishan Kishan":116,"Rohit Sharma":114,"Virat Kohli":110,"Ajinkya Rahane":96,"Shardul Thakur":83,"Angkrish Raghuvanshi":79,"Romario Shepherd":77,"Aniket Verma":68,"Heinrich Klaasen":61,"Finn Allen":61,"Rinku Singh":57,"Hardik Pandya":56,"Rajat Patidar":53,"Tilak Varma":46,"Phil Salt":42,"Jaydev Unadkat":41,"Cameron Green":31,"Bhuvneshwar Kumar":29,"Suyash Sharma":29,"Sunil Narine":27,"Tim David":27,"Suryakumar Yadav":23,"Vaibhav Arora":23,"Travis Head":17,"Abhishek Sharma":13,"Sherfane Rutherford":12,"Naman Dhir":10,"Jitesh Sharma":10,"Ramandeep Singh":8,"Nitish Kumar Reddy":5,"Jasprit Bumrah":4,"Trent Boult":4};
+const POINTS={"Ryan Rickelton":119,"Ishan Kishan":116,"Rohit Sharma":114,"Virat Kohli":110,"Ajinkya Rahane":96,"Vaibhav Sooryavanshi":84,"Shardul Thakur":83,"Angkrish Raghuvanshi":79,"Romario Shepherd":77,"Anshul Kamboj":70,"Jofra Archer":68,"Aniket Verma":68,"Ravindra Jadeja":64,"Nandre Burger":64,"Heinrich Klaasen":61,"Finn Allen":61,"Yashasvi Jaiswal":59,"Rinku Singh":57,"Hardik Pandya":56,"Rajat Patidar":53,"Ravi Bishnoi":49,"Dhruv Jurel":48,"Tilak Varma":46,"Phil Salt":42,"Jaydev Unadkat":41,"Cameron Green":31,"Bhuvneshwar Kumar":29,"Suyash Sharma":29,"Sandeep Sharma":29,"Sunil Narine":27,"Tim David":27,"Kartik Sharma":24,"Suryakumar Yadav":23,"Vaibhav Arora":23,"Riyan Parag":21,"Travis Head":17,"Abhishek Sharma":13,"Shivam Dube":12,"Sherfane Rutherford":12,"Sanju Samson":11,"Naman Dhir":10,"Shimron Hetmyer":10,"Jitesh Sharma":10,"Khaleel Ahmed":8,"Ramandeep Singh":8,"Ruturaj Gaikwad":7,"Nitish Kumar Reddy":5,"Jasprit Bumrah":4,"Trent Boult":4,"Matt Henry":4,"Ayush Mhatre":2,"Noor Ahmad":-1};
 
-const MEDAL = ['🥇','🥈','🥉'];
-const COLORS = ['#F0A500','#A8A8A8','#C47B3A','#5BA3E8','#82C44A','#E87AAF','#A07CF0','#FF7A5C'];
+const PRICES={"Hardik Pandya":18,"Virat Kohli":17,"Ishan Kishan":15,"Abhishek Sharma":14.5,"Jasprit Bumrah":14.25,"Tilak Varma":14.25,"Shubman Gill":14,"Suryakumar Yadav":14,"Shivam Dube":14,"Shreyas Iyer":13.75,"Yashasvi Jaiswal":13.5,"Ruturaj Gaikwad":12.75,"Aiden Markram":12.5,"Sai Sudharsan":12.25,"Dewal Brevis":12,"Travis Head":12,"Axar Patel":12,"Vaibhav Sooryavanshi":11.75,"KL Rahul":11.5,"Prabhsimran Singh":11.25,"Ravindra Jadeja":11,"Nicholas Pooran":10.75,"Heinrich Klaasen":10.5,"Rajat Patidar":10.5,"Arshdeep Singh":10.25,"Rohit Sharma":10,"Riyan Parag":10,"Mitchell Marsh":10,"Varun Chakravarthy":9.75,"Krunal Pandya":9.75,"Phil Salt":9.5,"Prashant Veer":9.25,"Kuldeep Yadav":9,"Noor Ahmad":8.75,"Jos Buttler":8.5,"Rishabh Pant":8.5,"Josh Hazlewood":8.5,"Sunil Narine":8.5,"Harshit Rana":8.25,"Prasidh Krishna":8.25,"Mitchell Starc":8,"Rashid Khan":8,"Trent Boult":8,"Mohammed Shami":8,"Pat Cummins":8,"Sam Curran":8,"Sanju Samson":8,"Marco Jansen":7.5,"Washington Sundar":7.25,"Matheesha Pathirana":7,"Yuzvendra Chahal":7,"Shimron Hetmyer":7,"Nitish Kumar Reddy":6.75,"Yash Dayal":6.5,"Jitesh Sharma":6.5,"Khaleel Ahmed":6.25,"Priyansh Arya":6.25,"Jofra Archer":6,"Cameron Green":5.75,"Ravi Bishnoi":5.5,"Mohammed Siraj":5.5,"Deepak Chahar":5.25,"Kagiso Rabada":5.25,"Venkatesh Iyer":5,"Mitchell Santner":5,"Finn Allen":5,"Nitish Rana":5,"Bhuvneshwar Kumar":4.9,"T Natarajan":4.9,"Ajinkya Rahane":4.9,"Ayush Mhatre":4.8,"Avesh Khan":4.7,"Romario Shepherd":4.7,"Nathan Ellis":4.2,"Wanindu Hasaranga":4.1,"Devdutt Padikkal":4.1,"Mukesh Kumar":4,"Quinton de Kock":4,"Tristan Stubbs":4,"Jason Holder":3.9,"Rinku Singh":3.8,"Pathum Nissanka":3.5,"Digvesh Rathi":3.5,"Harshal Patel":3.5,"Angkrish Raghuvanshi":3.4,"Akeal Hosein":3.3,"Will Jacks":3.3,"Lungi Ngidi":3.2,"Abishek Porel":3.1,"Shashank Singh":3.1,"Dhruv Jurel":3,"Tushar Deshpande":3,"Vipraj Nigam":3,"Ashutosh Sharma":2.9,"Sai Kishore":2.4,"Aniket Verma":2.3,"Sandeep Sharma":2.3,"Ayush Badoni":2.2,"Rahul Chahar":2.1,"Urvil Patel":2.1,"Azmatullah Omarzai":2,"Tim David":2,"Matt Henry":2,"Suyash Sharma":2,"Vaibhav Arora":2,"Rahul Tripathi":1.7,"Auqib Nabi":1.7,"M Shahrukh Khan":1.6,"Jaydev Unadkat":1.6,"Shardul Thakur":1.6,"Sherfane Rutherford":1.5,"Ramandeep Singh":1.5,"Rahul Tewatia":1.5,"Marcus Stoinis":1.4,"MS Dhoni":1.3,"Liam Livingstone":1.1,"Ryan Rickelton":1.1,"Kartik Sharma":1,"Glenn Phillips":0.7,"Mayank Yadav":0.7,"Sameer Rizvi":0.7,"Anshul Kamboj":0.7,"Harpreet Brar":0.7,"Jacob Bethell":0.6,"Mohsin Khan":0.6,"Lockie Ferguson":0.5,"Akash Deep":0.5,"Nandre Burger":0.5,"Vijaykumar Vyshak":0.5,"Vignesh Puthur":0.5,"Rachin Ravindra":0.5,"Brydon Carse":0.5,"Anuj Rawat":0.4,"Karun Nair":0.3,"Prithvi Shaw":0.3,"Umran Malik":0.3,"Yash Thakur":0.3,"Manimaran Siddharth":0.3,"Ashwani Kumar":0.3,"Akash Singh":0.3,"Kamindu Mendis":0.3,"Naman Dhir":0.3,"Arshad Khan":0.3,"Abdul Samad":0.3,"Mangesh Yadav":0.3,"Navdeep Saini":0.3,"Spencer Johnson":0.3,"Dasun Shanaka":0.3,"Saurabh Dubey":0.3};
 
-function total(owner){ return SQUADS[owner].reduce((s,p)=>s+(POINTS[p]||0),0); }
-function ranked(){ return Object.keys(SQUADS).map(o=>({o,t:total(o)})).sort((a,b)=>b.t-a.t); }
+const OWNER_COLORS={Lokesh:'#F0A500',Tharun:'#5BA3E8',Gopi:'#82C44A',Moheeth:'#E87AAF',Mama:'#A07CF0',Vikki:'#FF7A5C',Ambu:'#4FC3F7',Ashish:'#C47B3A'};
 
-const r = ranked();
-const maxPts = r[0].t;
+function pts(p){return POINTS[p]||0}
+function price(p){return PRICES[p]||0.3}
+function vr(p){const c=price(p);return c>0?+(pts(p)/c).toFixed(1):0}
+function ownerOf(p){return Object.entries(SQUADS).find(([,ps])=>ps.includes(p))?.[0]||'?'}
+function total(o){return SQUADS[o].reduce((s,p)=>s+pts(p),0)}
+function ranked(){return Object.keys(SQUADS).map(o=>({o,t:total(o)})).sort((a,b)=>b.t-a.t)}
+function rb(r){return r==='bat'?'rb-bat':r==='bowl'?'rb-bowl':r==='wk'?'rb-wk':'rb-ar'}
+function rl(r){return(r||'ar').toUpperCase()}
 
-// PODIUM (top 3)
+const R=ranked(), maxPts=R[0].t;
+
+// PODIUM
 function buildPodium(){
-  const order = [r[1], r[0], r[2]]; // silver, gold, bronze
-  const classes = ['p2','p1','p3'];
-  const medals = ['🥈','🥇','🥉'];
-  document.getElementById('podium').innerHTML = order.map((item,i)=>`
-    <div class="podium-card ${classes[i]}" onclick="openModal('${item.o}')">
-      <div class="podium-medal">${medals[i]}</div>
-      <div class="podium-name">${item.o}</div>
-      <div class="podium-pts">${item.t}</div>
+  const ord=[R[1],R[0],R[2]],cls=['p2','p1','p3'],med=['🥈','🥇','🥉'];
+  document.getElementById('podium').innerHTML=ord.map((x,i)=>`
+    <div class="podium-card ${cls[i]}" onclick="openModal('${x.o}')">
+      <div class="podium-medal">${med[i]}</div>
+      <div class="podium-name">${x.o}</div>
+      <div class="podium-pts">${x.t}</div>
       <div class="podium-label">points</div>
-      <div class="podium-meta">${SQUADS[item.o].filter(p=>POINTS[p]>0).length} players scored</div>
+      <div class="podium-meta">${SQUADS[x.o].filter(p=>pts(p)>0).length} players scored</div>
     </div>`).join('');
 }
 
-// FULL LEADERBOARD
+// LB
 function buildLB(){
-  document.getElementById('lbList').innerHTML = r.slice(3).map((item,i)=>`
-    <div class="lb-row" onclick="openModal('${item.o}')" style="animation-delay:${(i+4)*0.07}s">
+  document.getElementById('lbList').innerHTML=R.slice(3).map(({o,t},i)=>`
+    <div class="lb-row" onclick="openModal('${o}')" style="animation-delay:${(i+4)*.07}s">
       <div class="lb-rank">${i+4}</div>
       <div>
-        <div class="lb-name">${item.o}</div>
-        <div class="lb-meta">${SQUADS[item.o].filter(p=>POINTS[p]>0).length} scored &bull; best: ${[...SQUADS[item.o]].sort((a,b)=>(POINTS[b]||0)-(POINTS[a]||0))[0]}</div>
+        <div class="lb-name">${o}</div>
+        <div class="lb-meta">${SQUADS[o].filter(p=>pts(p)>0).length} scored &bull; best: ${[...SQUADS[o]].sort((a,b)=>pts(b)-pts(a))[0]}</div>
       </div>
       <div>
-        <div class="lb-pts">${item.t}</div>
+        <div class="lb-pts">${t}</div>
         <div class="lb-pts-label">pts</div>
       </div>
-      <div class="lb-bar-wrap"><div class="lb-bar" style="width:${Math.round(item.t/maxPts*100)}%"></div></div>
+      <div class="lb-bar-wrap"><div class="lb-bar" style="width:${Math.round(t/maxPts*100)}%"></div></div>
     </div>`).join('');
 }
 
-// SQUADS GRID
+// SQUADS
 function buildSquads(){
-  document.getElementById('squadGrid').innerHTML = r.map(({o},idx)=>`
-    <div class="squad-card" onclick="openModal('${o}')" style="animation-delay:${idx*0.07}s">
-      <div class="squad-card-header">
+  document.getElementById('squadGrid').innerHTML=R.map(({o},i)=>`
+    <div class="squad-card" onclick="openModal('${o}')" style="animation-delay:${i*.07}s">
+      <div class="sc-header">
         <div>
-          <div style="font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Rank #${idx+1}</div>
-          <div class="squad-card-name">${o}</div>
+          <div style="font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Rank #${i+1}</div>
+          <div class="sc-name">${o}</div>
         </div>
-        <div class="squad-card-pts">${total(o)}</div>
+        <div class="sc-pts">${total(o)}</div>
       </div>
-      <div class="squad-card-body">
-        ${SQUADS[o].map(p=>`<span class="squad-player-chip ${(POINTS[p]||0)>0?'has-pts':''}">${p} ${(POINTS[p]||0)>0?'<b style="color:var(--gold)">'+POINTS[p]+'</b>':''}</span>`).join('')}
+      <div class="sc-body">
+        ${SQUADS[o].map(p=>`<span class="player-chip ${pts(p)>0?'has-pts':''}">${p}${pts(p)>0?' <b style="color:var(--gold);font-size:10px">'+pts(p)+'</b>':''}</span>`).join('')}
       </div>
     </div>`).join('');
 }
 
-// CHART
-let chartInst = null;
-function buildChart(){
-  if(chartInst) return;
-  const labels = r.map(x=>x.o);
-  const data = r.map(x=>x.t);
-  chartInst = new Chart(document.getElementById('mainChart'),{
-    type:'bar',
-    data:{labels,datasets:[{data,backgroundColor:COLORS,borderRadius:8,borderSkipped:false}]},
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y} pts`},backgroundColor:'#1A1A26',titleColor:'#F0EDE8',bodyColor:'#A8A8A8',borderColor:'rgba(255,255,255,0.1)',borderWidth:1}},
-      scales:{
-        x:{grid:{display:false},ticks:{color:'#7A7A8C',font:{size:12}}},
-        y:{min:Math.max(0,Math.min(...data)-30),grid:{color:'rgba(255,255,255,0.05)'},ticks:{color:'#7A7A8C',font:{size:11}}}
-      }
-    }
-  });
+// STATS
+let tChart=null;
+function buildStats(){
+  if(tChart)return;
+  const labels=R.map(x=>x.o),data=R.map(x=>x.t);
+  tChart=new Chart(document.getElementById('teamChart'),{type:'bar',data:{labels,datasets:[{data,backgroundColor:labels.map(o=>OWNER_COLORS[o]),borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y} pts`},backgroundColor:'#1A1A26',titleColor:'#F0EDE8',bodyColor:'#7A7A8C',borderColor:'rgba(255,255,255,0.1)',borderWidth:1}},scales:{x:{grid:{display:false},ticks:{color:'#7A7A8C',font:{size:12}}},y:{min:Math.max(0,Math.min(...data)-40),grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#7A7A8C',font:{size:11}}}}}});
 
-  // Top scorers
-  const allScored = Object.entries(POINTS)
-    .filter(([p,pts])=>pts>0)
-    .map(([p,pts])=>({p,pts,owner:Object.entries(SQUADS).find(([o,ps])=>ps.includes(p))?.[0]||'?'}))
-    .sort((a,b)=>b.pts-a.pts)
-    .slice(0,10);
-
-  document.getElementById('topScorers').innerHTML = allScored.map((item,i)=>`
-    <div style="display:grid;grid-template-columns:28px 1fr auto auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)">
+  const allS=Object.entries(POINTS).filter(([,v])=>v>0).map(([p,v])=>({p,v,owner:ownerOf(p)})).sort((a,b)=>b.v-a.v).slice(0,10);
+  document.getElementById('topScorers').innerHTML=allS.map((x,i)=>`
+    <div style="display:grid;grid-template-columns:26px 1fr auto auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">
       <div style="font-family:'Bebas Neue';font-size:20px;color:var(--muted)">${i+1}</div>
-      <div>
-        <div style="font-size:14px;font-weight:500">${item.p}</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:1px">${item.owner}</div>
-      </div>
-      <span class="role-badge rb-${ROLES[item.p]||'bat'}">${(ROLES[item.p]||'bat').toUpperCase()}</span>
-      <div style="font-family:'Bebas Neue';font-size:26px;color:var(--gold)">${item.pts}</div>
+      <div><div style="font-size:14px;font-weight:500">${x.p}</div><div style="font-size:11px;color:var(--muted);margin-top:1px">${x.owner}</div></div>
+      <span class="rb ${rb(ROLES[x.p])}">${rl(ROLES[x.p])}</span>
+      <div style="font-family:'Bebas Neue';font-size:26px;color:var(--gold)">${x.v}</div>
     </div>`).join('');
+}
+
+// VALUE BUY
+let vsCol='vr',vsDir=-1;
+
+function allValuePlayers(){
+  return Object.values(SQUADS).flat()
+    .filter(p=>pts(p)>0)
+    .map(p=>({p,owner:ownerOf(p),price:price(p),pts:pts(p),vr:vr(p)}));
+}
+
+function buildValue(){
+  const all=allValuePlayers().sort((a,b)=>b.vr-a.vr);
+  const maxVr=all[0]?.vr||1;
+  const worstVr=[...all].sort((a,b)=>a.vr-b.vr)[0];
+  const mostPts=[...all].sort((a,b)=>b.pts-a.pts)[0];
+
+  // Biggest bust: expensive players with low pts/cr
+  const bust=Object.values(SQUADS).flat()
+    .filter(p=>price(p)>=5)
+    .map(p=>({p,owner:ownerOf(p),price:price(p),pts:pts(p),vr:vr(p)}))
+    .sort((a,b)=>a.vr-b.vr)[0];
+
+  // Team efficiency avg
+  const teamEff=R.map(({o})=>{
+    const sp=SQUADS[o].filter(p=>pts(p)>0);
+    const avg=sp.length?+(sp.reduce((s,p)=>s+vr(p),0)/sp.length).toFixed(1):0;
+    return{o,avg};
+  }).sort((a,b)=>b.avg-a.avg);
+
+  document.getElementById('valueHighlights').innerHTML=`
+    <div class="value-card gold-card">
+      <div class="vc-label">🏅 Best value buy <span class="label-best">TOP VALUE</span></div>
+      <div class="vc-player">${all[0].p}</div>
+      <div class="vc-owner">${all[0].owner} &bull; bought for ₹${all[0].price}Cr</div>
+      <div class="vc-stat pos">${all[0].vr.toFixed(1)} pts/Cr</div>
+      <div class="vc-detail">${all[0].pts} pts from ₹${all[0].price}Cr — extraordinary return</div>
+    </div>
+    <div class="value-card bust-card">
+      <div class="vc-label">💸 Biggest bust <span class="label-bust">OVERPAID</span></div>
+      <div class="vc-player">${bust.p}</div>
+      <div class="vc-owner">${bust.owner} &bull; bought for ₹${bust.price}Cr</div>
+      <div class="vc-stat neg">${bust.pts} pts</div>
+      <div class="vc-detail">Only ${bust.pts} pts for ₹${bust.price}Cr — ${bust.vr.toFixed(1)} pts/Cr</div>
+    </div>
+    <div class="value-card">
+      <div class="vc-label">🔥 Top scorer <span class="label-eff">MOST PTS</span></div>
+      <div class="vc-player">${mostPts.p}</div>
+      <div class="vc-owner">${mostPts.owner} &bull; bought for ₹${mostPts.price}Cr</div>
+      <div class="vc-stat neu">${mostPts.pts} pts</div>
+      <div class="vc-detail">${mostPts.vr.toFixed(1)} pts/Cr efficiency</div>
+    </div>
+    <div class="value-card">
+      <div class="vc-label">📊 Most efficient squad <span class="label-best">BEST ROI</span></div>
+      <div class="vc-player">${teamEff[0].o}</div>
+      <div class="vc-owner">Highest avg pts/Cr across scored players</div>
+      <div class="vc-stat pos">${teamEff[0].avg} avg pts/Cr</div>
+      <div class="vc-detail">${teamEff.map(t=>`${t.o}: ${t.avg}`).join(' · ')}</div>
+    </div>`;
+
+  renderVT(all,maxVr);
+}
+
+function renderVT(data,maxVr){
+  document.getElementById('valueTableBody').innerHTML=data.map(({p,owner,price,pts,vr})=>{
+    const pct=Math.round(vr/maxVr*100);
+    const col=vr>=50?'#4CAF7D':vr>=20?'#F0A500':'#E05C5C';
+    return `<tr>
+      <td><div style="font-size:13px;font-weight:500">${p}</div><span class="rb ${rb(ROLES[p])}" style="margin-top:2px;display:inline-block">${rl(ROLES[p])}</span></td>
+      <td><span style="font-size:12px;color:${OWNER_COLORS[owner]||'var(--muted)'};font-weight:500">${owner}</span></td>
+      <td>₹${price}Cr</td>
+      <td>${pts}</td>
+      <td style="white-space:nowrap"><span style="font-weight:600;color:${col}">${vr.toFixed(1)}</span><span class="vr-bar-wrap"><span class="vr-bar" style="width:${pct}%;background:${col}"></span></span></td>
+    </tr>`;
+  }).join('');
+}
+
+function sortTable(col){
+  if(vsCol===col)vsDir*=-1;else{vsCol=col;vsDir=-1;}
+  document.querySelectorAll('.sort-arrow').forEach(e=>e.textContent='');
+  document.getElementById('arr-'+col).textContent=vsDir===-1?'▼':'▲';
+  const all=allValuePlayers();
+  const maxVr=Math.max(...all.map(x=>x.vr));
+  const km={name:'p',owner:'owner',price:'price',pts:'pts',vr:'vr'};
+  const k=km[col];
+  all.sort((a,b)=>typeof a[k]==='string'?a[k].localeCompare(b[k])*vsDir:(b[k]-a[k])*-vsDir);
+  renderVT(all,maxVr);
 }
 
 // MODAL
 function openModal(owner){
-  document.getElementById('modalOwner').textContent = owner;
-  const rank = r.findIndex(x=>x.o===owner)+1;
-  document.getElementById('modalTotal').textContent = `Rank #${rank} · ${total(owner)} points · ${SQUADS[owner].filter(p=>POINTS[p]>0).length} players scored`;
-  document.getElementById('modalPlayers').innerHTML = [...SQUADS[owner]]
-    .sort((a,b)=>(POINTS[b]||0)-(POINTS[a]||0))
-    .map(p=>`
-      <div class="modal-player">
-        <div class="modal-pname">${p}</div>
-        <span class="role-badge rb-${ROLES[p]||'bat'}">${(ROLES[p]||'bat').toUpperCase()}</span>
-        <div class="modal-pts ${(POINTS[p]||0)===0?'zero':''}">${POINTS[p]||0}</div>
-      </div>`).join('');
+  const rank=R.findIndex(x=>x.o===owner)+1;
+  const spent=+SQUADS[owner].reduce((s,p)=>s+(PRICES[p]||0.3),0).toFixed(2);
+  document.getElementById('modalOwner').textContent=owner;
+  document.getElementById('modalTotal').textContent=`Rank #${rank} · ${total(owner)} pts · ₹${spent}Cr spent`;
+  document.getElementById('modalPlayers').innerHTML=[...SQUADS[owner]]
+    .sort((a,b)=>pts(b)-pts(a))
+    .map(p=>{
+      const v=vr(p),vcls=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
+      return `<div class="modal-player">
+        <div><div class="mp-name">${p}</div><div class="mp-cost">₹${price(p)}Cr</div></div>
+        <span class="rb ${rb(ROLES[p])}">${rl(ROLES[p])}</span>
+        <div class="mp-pts ${pts(p)===0?'zero':''}">${pts(p)}</div>
+        <div class="mp-vr ${pts(p)>0?vcls:'vr-bad'}">${pts(p)>0?v.toFixed(1)+'/Cr':'—'}</div>
+      </div>`;}).join('');
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeModal(e){
-  if(e && e.target!==document.getElementById('modal')) return;
+  if(e&&e.target!==document.getElementById('modal'))return;
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow='';
 }
 
 // TABS
-function showTab(name, btn){
+function showTab(name,btn){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('tab-standings').style.display = name==='standings'?'block':'none';
-  document.getElementById('tab-squads').style.display = name==='squads'?'block':'none';
-  document.getElementById('tab-chart').style.display = name==='chart'?'block':'none';
-  if(name==='chart') setTimeout(buildChart, 50);
+  ['standings','squads','stats','value'].forEach(t=>document.getElementById('tab-'+t).style.display=t===name?'block':'none');
+  if(name==='stats')setTimeout(buildStats,50);
+  if(name==='value')setTimeout(buildValue,50);
 }
 
-buildPodium();
-buildLB();
-buildSquads();
+buildPodium();buildLB();buildSquads();
 </script>
 </body>
 </html>
