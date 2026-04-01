@@ -133,7 +133,7 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:12px;let
     <div class="trophy">🏆</div>
     <div class="site-title">The Dugout</div>
     <div class="site-sub">IPL Fantasy Leaderboard 2026 &bull; Mock Auction</div>
-    <div class="match-badge"><span class="dot"></span>Live after Match 5 &bull; Updated 1 Apr 2026</div>
+    <div class="match-badge"><span class="dot"></span>Live after Match 5 &bull; Updated 31 Mar 2026</div>
   </header>
 
   <div class="tabs">
@@ -193,81 +193,8 @@ const SQUADS={Lokesh:["Prabhsimran Singh","Matheesha Pathirana","Navdeep Saini",
 const ROLES={"Prabhsimran Singh":"bat","Matheesha Pathirana":"bowl","Navdeep Saini":"bowl","Jasprit Bumrah":"bowl","Ravi Bishnoi":"bowl","Riyan Parag":"ar","Ravindra Jadeja":"ar","Wanindu Hasaranga":"ar","Liam Livingstone":"ar","Kartik Sharma":"bat","Tristan Stubbs":"bat","Cameron Green":"ar","Dhruv Jurel":"wk","Digvesh Rathi":"bowl","Will Jacks":"ar","Vipraj Nigam":"bowl","Vaibhav Arora":"bowl","Auqib Nabi":"ar","Mangesh Yadav":"bowl","Sai Sudharsan":"bat","Suryakumar Yadav":"bat","Varun Chakravarthy":"bowl","Trent Boult":"bowl","T Natarajan":"bowl","Yashasvi Jaiswal":"bat","Mitchell Marsh":"ar","Priyansh Arya":"bat","Quinton de Kock":"wk","Ayush Mhatre":"bat","Angkrish Raghuvanshi":"bat","Glenn Phillips":"ar","Sandeep Sharma":"bowl","Nandre Burger":"bowl","Nitish Rana":"bat","Brydon Carse":"ar","Rajat Patidar":"bat","Ruturaj Gaikwad":"bat","Noor Ahmad":"bowl","Khaleel Ahmed":"bowl","Deepak Chahar":"ar","Yash Dayal":"bowl","Tilak Varma":"bat","Abhishek Sharma":"ar","Ryan Rickelton":"wk","Jitesh Sharma":"wk","Akeal Hosein":"ar","Lockie Ferguson":"bowl","Rahul Chahar":"bowl","Vignesh Puthur":"bowl","Rachin Ravindra":"bat","Romario Shepherd":"ar","Rahul Tewatia":"ar","Manimaran Siddharth":"bowl","KL Rahul":"wk","Heinrich Klaasen":"wk","Travis Head":"bat","Jofra Archer":"bowl","Mohammed Siraj":"bowl","Kagiso Rabada":"bowl","Jason Holder":"ar","Sunil Narine":"ar","M Shahrukh Khan":"bat","Rinku Singh":"bat","Sanju Samson":"wk","Abishek Porel":"wk","Tushar Deshpande":"bowl","Saurabh Dubey":"bowl","Shashank Singh":"bat","Shardul Thakur":"ar","Harshal Patel":"ar","Sai Kishore":"bowl","Ayush Badoni":"bat","Abdul Samad":"ar","Shreyas Iyer":"bat","Jos Buttler":"wk","Phil Salt":"wk","Rashid Khan":"ar","Prasidh Krishna":"bowl","Axar Patel":"ar","Pat Cummins":"ar","Krunal Pandya":"ar","Prashant Veer":"bowl","Pathum Nissanka":"bat","Aniket Verma":"bat","Spencer Johnson":"bowl","Vijaykumar Vyshak":"bowl","Rahul Tripathi":"bat","Akash Singh":"bowl","Arshad Khan":"bowl","Virat Kohli":"bat","Nicholas Pooran":"wk","Rohit Sharma":"bat","Ishan Kishan":"wk","Mitchell Starc":"bowl","Avesh Khan":"bowl","Shivam Dube":"ar","Azmatullah Omarzai":"ar","Venkatesh Iyer":"ar","Mitchell Santner":"ar","Lungi Ngidi":"bowl","Marcus Stoinis":"ar","Ashutosh Sharma":"ar","Anuj Rawat":"wk","Karun Nair":"bat","Ashwani Kumar":"bowl","Aiden Markram":"ar","Vaibhav Sooryavanshi":"bat","Arshdeep Singh":"bowl","Yuzvendra Chahal":"bowl","Bhuvneshwar Kumar":"bowl","Hardik Pandya":"ar","Dasun Shanaka":"ar","Nitish Kumar Reddy":"ar","Finn Allen":"wk","Sherfane Rutherford":"bat","Shimron Hetmyer":"bat","MS Dhoni":"wk","Jaydev Unadkat":"bowl","Suyash Sharma":"bowl","Prithvi Shaw":"bat","Umran Malik":"bowl","Yash Thakur":"bowl","Kamindu Mendis":"ar","Naman Dhir":"bat","Harpreet Brar":"ar","Shubman Gill":"bat","Dewal Brevis":"bat","Rishabh Pant":"wk","Kuldeep Yadav":"bowl","Mukesh Kumar":"bowl","Josh Hazlewood":"bowl","Mohammed Shami":"bowl","Washington Sundar":"ar","Marco Jansen":"ar","Ajinkya Rahane":"bat","Tim David":"bat","Matt Henry":"bowl","Mayank Yadav":"bowl","Ramandeep Singh":"ar","Jacob Bethell":"ar","Urvil Patel":"bat","Devdutt Padikkal":"bat","Mohsin Khan":"bowl","Sameer Rizvi":"bat","Anshul Kamboj":"bowl"};
 
 // Game 5 updated points
-const POINTS = {
-"Devdutt Padikkal":122,
-"Ryan Rickelton":119,
-"Ishan Kishan":116,
-"Rohit Sharma":114,
-"Virat Kohli":110,
-"Ajinkya Rahane":96,
-"Prasidh Krishna":91,
-"Vaibhav Sooryavanshi":84,
-"Shardul Thakur":83,
-"Vijaykumar Vyshak":83,
-"Angkrish Raghuvanshi":79,
-"Romario Shepherd":77,
-"Shubman Gill":71,
-"Anshul Kamboj":70,
-"Jofra Archer":68,
-"Aniket Verma":68,
-"Ravindra Jadeja":64,
-"Nandre Burger":64,
-"Heinrich Klaasen":61,
-"Jos Buttler":61,
-"Finn Allen":61,
-"Yashasvi Jaiswal":59,
-"Prabhsimran Singh":58,
-"Rinku Singh":57,
-"Washington Sundar":57,
-"Hardik Pandya":56,
-"Yuzvendra Chahal":54,
-"Rajat Patidar":53,
-"Marco Jansen":52,
-"Ravi Bishnoi":49,
-"Dhruv Jurel":48,
-"Tilak Varma":46,
-"Phil Salt":42,
-"Jaydev Unadkat":41,
-"Shreyas Iyer":38,
-"Rashid Khan":37,
-"Glenn Phillips":34,
-"Cameron Green":31,
-"Bhuvneshwar Kumar":29,
-"Sandeep Sharma":29,
-"Suyash Sharma":29,
-"Sunil Narine":27,
-"Tim David":27,
-"Kagiso Rabada":25,
-"Kartik Sharma":24,
-"Suryakumar Yadav":23,
-"Vaibhav Arora":23,
-"Riyan Parag":21,
-"Sai Sudharsan":19,
-"Arshdeep Singh":18,
-"Travis Head":17,
-"Rahul Tewatia":16,
-"Abhishek Sharma":13,
-"Priyansh Arya":13,
-"Shivam Dube":12,
-"Sherfane Rutherford":12,
-"Sanju Samson":11,
-"Naman Dhir":10,
-"Shimron Hetmyer":10,
-"Jitesh Sharma":10,
-"Shashank Singh":8,
-"Khaleel Ahmed":8,
-"Ramandeep Singh":8,
-"Ruturaj Gaikwad":7,
-"Nitish Kumar Reddy":5,
-"Jasprit Bumrah":4,
-"Trent Boult":4,
-"Mohammed Siraj":4,
-"Matt Henry":4,
-"Marcus Stoinis":2,
-"Ayush Mhatre":2,
-"Noor Ahmad":-1,
-"Tristan Stubbs":0
-};
+const POINTS={"Ryan Rickelton":119,"Ishan Kishan":116,"Rohit Sharma":114,"Virat Kohli":110,"Ajinkya Rahane":96,"Prasidh Krishna":91,"Vaibhav Sooryavanshi":84,"Shardul Thakur":83,"Vijaykumar Vyshak":83,"Angkrish Raghuvanshi":79,"Romario Shepherd":77,"Shubman Gill":71,"Anshul Kamboj":70,"Jofra Archer":68,"Aniket Verma":68,"Ravindra Jadeja":64,"Nandre Burger":64,"Heinrich Klaasen":61,"Jos Buttler":61,"Finn Allen":61,"Yashasvi Jaiswal":59,"Prabhsimran Singh":58,"Rinku Singh":57,"Washington Sundar":57,"Hardik Pandya":56,"Yuzvendra Chahal":54,"Rajat Patidar":53,"Marco Jansen":52,"Ravi Bishnoi":49,"Dhruv Jurel":48,"Tilak Varma":46,"Phil Salt":42,"Jaydev Unadkat":41,"Shreyas Iyer":38,"Rashid Khan":37,"Glenn Phillips":34,"Cameron Green":31,"Bhuvneshwar Kumar":29,"Sandeep Sharma":29,"Suyash Sharma":29,"Sunil Narine":27,"Tim David":27,"Kagiso Rabada":25,"Kartik Sharma":24,"Suryakumar Yadav":23,"Vaibhav Arora":23,"Riyan Parag":21,"Sai Sudharsan":19,"Arshdeep Singh":18,"Travis Head":17,"Rahul Tewatia":16,"Abhishek Sharma":13,"Priyansh Arya":13,"Shivam Dube":12,"Sherfane Rutherford":12,"Sanju Samson":11,"Naman Dhir":10,"Shimron Hetmyer":10,"Jitesh Sharma":10,"Shashank Singh":8,"Khaleel Ahmed":8,"Ramandeep Singh":8,"Ruturaj Gaikwad":7,"Nitish Kumar Reddy":5,"Jasprit Bumrah":4,"Trent Boult":4,"Mohammed Siraj":4,"Matt Henry":4,"Marcus Stoinis":2,"Ayush Mhatre":2,"Noor Ahmad":-1,"Rishabh Pant":20,"Kuldeep Yadav":70,"Mukesh Kumar":28,"Mohammed Shami":30,"Mohsin Khan":55,"Sameer Rizvi":97,"Axar Patel":39,"Pathum Nissanka":5,"Aiden Markram":18,"KL Rahul":10,"Ayush Badoni":2,"Abdul Samad":59,"Nicholas Pooran":13,"Lungi Ngidi":91,"T Natarajan":83,"Mitchell Marsh":51,"Nitish Rana":23,"Tristan Stubbs":68,"Vipraj Nigam":4};
+
 const PRICES={"Hardik Pandya":18,"Virat Kohli":17,"Ishan Kishan":15,"Abhishek Sharma":14.5,"Jasprit Bumrah":14.25,"Tilak Varma":14.25,"Shubman Gill":14,"Suryakumar Yadav":14,"Shivam Dube":14,"Shreyas Iyer":13.75,"Yashasvi Jaiswal":13.5,"Ruturaj Gaikwad":12.75,"Aiden Markram":12.5,"Sai Sudharsan":12.25,"Dewal Brevis":12,"Travis Head":12,"Axar Patel":12,"Vaibhav Sooryavanshi":11.75,"KL Rahul":11.5,"Prabhsimran Singh":11.25,"Ravindra Jadeja":11,"Nicholas Pooran":10.75,"Heinrich Klaasen":10.5,"Rajat Patidar":10.5,"Arshdeep Singh":10.25,"Rohit Sharma":10,"Riyan Parag":10,"Mitchell Marsh":10,"Varun Chakravarthy":9.75,"Krunal Pandya":9.75,"Phil Salt":9.5,"Prashant Veer":9.25,"Kuldeep Yadav":9,"Noor Ahmad":8.75,"Jos Buttler":8.5,"Rishabh Pant":8.5,"Josh Hazlewood":8.5,"Sunil Narine":8.5,"Harshit Rana":8.25,"Prasidh Krishna":8.25,"Mitchell Starc":8,"Rashid Khan":8,"Trent Boult":8,"Mohammed Shami":8,"Pat Cummins":8,"Sam Curran":8,"Sanju Samson":8,"Marco Jansen":7.5,"Washington Sundar":7.25,"Matheesha Pathirana":7,"Yuzvendra Chahal":7,"Shimron Hetmyer":7,"Nitish Kumar Reddy":6.75,"Yash Dayal":6.5,"Jitesh Sharma":6.5,"Khaleel Ahmed":6.25,"Priyansh Arya":6.25,"Jofra Archer":6,"Cameron Green":5.75,"Ravi Bishnoi":5.5,"Mohammed Siraj":5.5,"Deepak Chahar":5.25,"Kagiso Rabada":5.25,"Venkatesh Iyer":5,"Mitchell Santner":5,"Finn Allen":5,"Nitish Rana":5,"Bhuvneshwar Kumar":4.9,"T Natarajan":4.9,"Ajinkya Rahane":4.9,"Ayush Mhatre":4.8,"Avesh Khan":4.7,"Romario Shepherd":4.7,"Nathan Ellis":4.2,"Wanindu Hasaranga":4.1,"Devdutt Padikkal":4.1,"Mukesh Kumar":4,"Quinton de Kock":4,"Tristan Stubbs":4,"Jason Holder":3.9,"Rinku Singh":3.8,"Pathum Nissanka":3.5,"Digvesh Rathi":3.5,"Harshal Patel":3.5,"Angkrish Raghuvanshi":3.4,"Akeal Hosein":3.3,"Will Jacks":3.3,"Lungi Ngidi":3.2,"Abishek Porel":3.1,"Shashank Singh":3.1,"Dhruv Jurel":3,"Tushar Deshpande":3,"Vipraj Nigam":3,"Ashutosh Sharma":2.9,"Sai Kishore":2.4,"Aniket Verma":2.3,"Sandeep Sharma":2.3,"Ayush Badoni":2.2,"Rahul Chahar":2.1,"Urvil Patel":2.1,"Azmatullah Omarzai":2,"Tim David":2,"Matt Henry":2,"Suyash Sharma":2,"Vaibhav Arora":2,"Rahul Tripathi":1.7,"Auqib Nabi":1.7,"M Shahrukh Khan":1.6,"Jaydev Unadkat":1.6,"Shardul Thakur":1.6,"Sherfane Rutherford":1.5,"Ramandeep Singh":1.5,"Rahul Tewatia":1.5,"Marcus Stoinis":1.4,"MS Dhoni":1.3,"Liam Livingstone":1.1,"Ryan Rickelton":1.1,"Kartik Sharma":1,"Glenn Phillips":0.7,"Mayank Yadav":0.7,"Sameer Rizvi":0.7,"Anshul Kamboj":0.7,"Harpreet Brar":0.7,"Jacob Bethell":0.6,"Mohsin Khan":0.6,"Lockie Ferguson":0.5,"Akash Deep":0.5,"Nandre Burger":0.5,"Vijaykumar Vyshak":0.5,"Vignesh Puthur":0.5,"Rachin Ravindra":0.5,"Brydon Carse":0.5,"Anuj Rawat":0.4,"Karun Nair":0.3,"Prithvi Shaw":0.3,"Umran Malik":0.3,"Yash Thakur":0.3,"Manimaran Siddharth":0.3,"Ashwani Kumar":0.3,"Akash Singh":0.3,"Kamindu Mendis":0.3,"Naman Dhir":0.3,"Arshad Khan":0.3,"Abdul Samad":0.3,"Mangesh Yadav":0.3,"Navdeep Saini":0.3,"Spencer Johnson":0.3,"Dasun Shanaka":0.3,"Saurabh Dubey":0.3};
 
 const OWNER_COLORS={Lokesh:'#F0A500',Tharun:'#5BA3E8',Gopi:'#82C44A',Moheeth:'#E87AAF',Mama:'#A07CF0',Vikki:'#FF7A5C',Ambu:'#4FC3F7',Ashish:'#C47B3A'};
