@@ -324,6 +324,11 @@ const SQUADS_L2 = {
 // Traded players (for highlighting)
 const TRADED = new Set(["Washington Sundar","Yuzvendra Chahal","Sameer Rizvi","Mayank Yadav","Ravindra Jadeja"]);
 
+// Injury replacements: { owner: { out: playerName, in: playerName } }
+const INJURY_REPLACEMENTS = {
+  Tharun: { out: "Ayush Mhatre", in: "Akash Madhwal" }
+};
+
 const ROLES={"Prabhsimran Singh":"bat","Matheesha Pathirana":"bowl","Navdeep Saini":"bowl","Jasprit Bumrah":"bowl","Ravi Bishnoi":"bowl","Riyan Parag":"ar","Ravindra Jadeja":"ar","George Linde":"ar","Liam Livingstone":"ar","Kartik Sharma":"bat","Tristan Stubbs":"bat","Cameron Green":"ar","Dhruv Jurel":"wk","Digvesh Singh":"bowl","Will Jacks":"ar","Vipraj Nigam":"bowl","Vaibhav Arora":"bowl","Auqib Nabi":"ar","Mangesh Yadav":"bowl","Sai Sudharsan":"bat","Suryakumar Yadav":"bat","Varun Chakaravarthy":"bowl","Trent Boult":"bowl","T Natarajan":"bowl","Yashasvi Jaiswal":"bat","Mitchell Marsh":"ar","Priyansh Arya":"bat","Quinton de Kock":"wk","Ayush Mhatre":"bat","Angkrish Raghuvanshi":"bat","Glenn Phillips":"ar","Sandeep Sharma":"bowl","Nandre Burger":"bowl","Nitish Rana":"bat","Dilshan Madushanka":"bowl","Akash Madhwal":"bowl","Rajat Patidar":"bat","Ruturaj Gaikwad":"bat","Noor Ahmad":"bowl","Khaleel Ahmed":"bowl","Deepak Chahar":"ar","Yash Dayal":"bowl","Tilak Varma":"bat","Abhishek Sharma":"ar","Ryan Rickelton":"wk","Jitesh Sharma":"wk","Akeal Hosein":"ar","Lockie Ferguson":"bowl","Rahul Chahar":"bowl","Vignesh Puthur":"bowl","Rachin Ravindra":"bat","Romario Shepherd":"ar","Rahul Tewatia":"ar","Manimaran Siddharth":"bowl","KL Rahul":"wk","Heinrich Klaasen":"wk","Travis Head":"bat","Jofra Archer":"bowl","Mohammed Siraj":"bowl","Kagiso Rabada":"bowl","Jason Holder":"ar","Sunil Narine":"ar","Shahrukh Khan":"bat","Rinku Singh":"bat","Sanju Samson":"wk","Abishek Porel":"wk","Tushar Deshpande":"bowl","Saurabh Dubey":"bowl","Shashank Singh":"bat","Shardul Thakur":"ar","Harshal Patel":"ar","Sai Kishore":"bowl","Ayush Badoni":"bat","Abdul Samad":"ar","Shreyas Iyer":"bat","Jos Buttler":"wk","Phil Salt":"wk","Rashid Khan":"ar","Prasidh Krishna":"bowl","Axar Patel":"ar","Pat Cummins":"ar","Krunal Pandya":"ar","Prashant Veer":"bowl","Pathum Nissanka":"bat","Aniket Verma":"bat","Spencer Johnson":"bowl","Vijaykumar Vyshak":"bowl","Rahul Tripathi":"bat","Akash Singh":"bowl","Arshad Khan":"bowl","Virat Kohli":"bat","Nicholas Pooran":"wk","Rohit Sharma":"bat","Ishan Kishan":"wk","Mitchell Starc":"bowl","Avesh Khan":"bowl","Shivam Dube":"ar","Azmatullah Omarzai":"ar","Venkatesh Iyer":"ar","Mitchell Santner":"ar","Lungi Ngidi":"bowl","Marcus Stoinis":"ar","Ashutosh Sharma":"ar","Anuj Rawat":"wk","Karun Nair":"bat","Ashwani Kumar":"bowl","Aiden Markram":"ar","Vaibhav Sooryavanshi":"bat","Arshdeep Singh":"bowl","Yuzvendra Chahal":"bowl","Bhuvneshwar Kumar":"bowl","Hardik Pandya":"ar","Dasun Shanaka":"ar","Nitish Kumar Reddy":"ar","Finn Allen":"wk","Sherfane Rutherford":"bat","Shimron Hetmyer":"bat","MS Dhoni":"wk","Jaydev Unadkat":"bowl","Suyash Sharma":"bowl","Prithvi Shaw":"bat","Umran Malik":"bowl","Yash Thakur":"bowl","Kamindu Mendis":"ar","Naman Dhir":"bat","Harpreet Brar":"ar","Shubman Gill":"bat","Dewald Brevis":"bat","Rishabh Pant":"wk","Kuldeep Yadav":"bowl","Mukesh Kumar":"bowl","Josh Hazlewood":"bowl","Mohammad Shami":"bowl","Washington Sundar":"ar","Marco Jansen":"ar","Ajinkya Rahane":"bat","Tim David":"bat","Matt Henry":"bowl","Mayank Yadav":"bowl","Ramandeep Singh":"ar","Jacob Bethell":"ar","Urvil Patel":"bat","Devdutt Padikkal":"bat","Mohsin Khan":"bowl","Sameer Rizvi":"bat","Anshul Kamboj":"bowl"};
 
 // Leg 1 = points after match 35 (frozen)
@@ -541,21 +546,42 @@ function openModal(owner, ctx){
   let playersHTML = '';
 
   if(isOverall){
-    // Section 1: All L1 players sorted by L1 pts, traded-out ones tagged
-    const l1sorted = [...SQUADS_L1[owner]].sort((a,b)=>ptsL1(b)-ptsL1(a));
-    const tradedOutPlayers = l1sorted.filter(p => TRADED.has(p) && !SQUADS_L2[owner].includes(p));
-    const tradedInPlayers  = SQUADS_L2[owner].filter(p => TRADED.has(p) && !SQUADS_L1[owner].includes(p));
+    const injury = INJURY_REPLACEMENTS[owner]; // { out, in } or undefined
+    const injuredOut = injury ? injury.out : null;
+    const injuryIn   = injury ? injury.in  : null;
+
+    // Section 1: All L1 players — sorted by combined pts
+    const tradedInPlayers = SQUADS_L2[owner].filter(p => TRADED.has(p) && !SQUADS_L1[owner].includes(p));
+    const l1sorted = [...SQUADS_L1[owner]].filter(p => p !== injuryIn).sort((a,b)=>{
+      const isOutA = (TRADED.has(a) && !SQUADS_L2[owner].includes(a)) || a === injuredOut;
+      const isOutB = (TRADED.has(b) && !SQUADS_L2[owner].includes(b)) || b === injuredOut;
+      const ptsA = isOutA ? ptsL1(a) : ptsL1(a)+ptsL2(a);
+      const ptsB = isOutB ? ptsL1(b) : ptsL1(b)+ptsL2(b);
+      return ptsB - ptsA;
+    });
 
     // Section header
-    playersHTML += `<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:4px 0 8px;border-bottom:1px solid var(--border);margin-bottom:4px">Leg 1 Squad — ${totalL1(owner)} pts</div>`;
+    playersHTML += `<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:4px 0 8px;border-bottom:1px solid var(--border);margin-bottom:4px">Overall Squad — ${totalOverall(owner)} pts</div>`;
 
     playersHTML += l1sorted.map(p=>{
-      const myPts = ptsL1(p);
+      const isTradeOut = TRADED.has(p) && !SQUADS_L2[owner].includes(p);
+      const isInjuredOut = p === injuredOut;
+      const fadeIt = isTradeOut || isInjuredOut;
+      // Traded-out & injured: only contributed L1 pts for this owner. Others: L1+L2.
+      const myPts = (isTradeOut || isInjuredOut) ? ptsL1(p) : ptsL1(p) + ptsL2(p);
       const v=+(myPts/price(p)).toFixed(1), vc=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
-      const isOut = TRADED.has(p) && !SQUADS_L2[owner].includes(p);
-      return `<div class="modal-player" style="${isOut?'opacity:0.6':''}">
+      const tag = isTradeOut
+        ? `<span class="traded-tag" style="background:rgba(224,92,92,.15);color:var(--red);margin-left:6px">OUT L2</span>`
+        : isInjuredOut
+        ? `<span class="traded-tag" style="background:rgba(224,92,92,.15);color:var(--red);margin-left:6px">🤕 INJURED</span>`
+        : '';
+      // Show L1+L2 breakdown as subtitle for regular players
+      const breakdown = (!isTradeOut && !isInjuredOut && ptsL2(p) > 0)
+        ? `<span style="font-size:10px;color:var(--muted);margin-left:6px">L1:${ptsL1(p)} + L2:${ptsL2(p)}</span>`
+        : '';
+      return `<div class="modal-player" style="${fadeIt?'opacity:0.5':''}">
         <div>
-          <div class="mp-name">${p}${isOut?'<span class="traded-tag" style="background:rgba(224,92,92,.15);color:var(--red);margin-left:6px">OUT L2</span>':''}</div>
+          <div class="mp-name">${p}${tag}${breakdown}</div>
           <div class="mp-cost">₹${price(p)}Cr</div>
         </div>
         <span class="rb ${rb(ROLES[p])}">${rl(ROLES[p])}</span>
@@ -580,6 +606,22 @@ function openModal(owner, ctx){
           <div class="mp-vr ${myPts>0?vc:'vr-bad'}">${myPts>0?v.toFixed(1)+'/Cr':'—'}</div>
         </div>`;
       }).join('');
+    }
+
+    // Section 3: Injury replacement (if any)
+    if(injuryIn){
+      const myPts = ptsL2(injuryIn);
+      const v=+(myPts/price(injuryIn)).toFixed(1), vc=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
+      playersHTML += `<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#f97316;padding:14px 0 8px;border-bottom:1px solid rgba(249,115,22,.2);margin-bottom:4px">🤕 Injury Replacement — Leg 2 Points</div>`;
+      playersHTML += `<div class="modal-player" style="border-left:2px solid rgba(249,115,22,.5);padding-left:10px;margin-left:-10px">
+        <div>
+          <div class="mp-name">${injuryIn}<span class="traded-tag" style="background:rgba(249,115,22,.15);color:#f97316;margin-left:6px">REPLACES ${injuredOut}</span></div>
+          <div class="mp-cost">₹${price(injuryIn)}Cr</div>
+        </div>
+        <span class="rb ${rb(ROLES[injuryIn])}">${rl(ROLES[injuryIn])}</span>
+        <div class="mp-pts ${myPts===0?'zero':''}">${myPts}</div>
+        <div class="mp-vr ${myPts>0?vc:'vr-bad'}">${myPts>0?v.toFixed(1)+'/Cr':'—'}</div>
+      </div>`;
     }
 
   } else {
