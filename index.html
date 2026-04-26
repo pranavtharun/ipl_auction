@@ -23,9 +23,27 @@ header{text-align:center;padding:60px 20px 36px}
 .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-.tabs{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:12px;margin:32px 0 24px;border:1px solid var(--border)}
+/* Main nav tabs (Overall / Leg 1 / Leg 2) */
+.main-tabs{display:flex;gap:6px;padding:6px;background:var(--surface);border-radius:14px;margin:28px 0 0;border:1px solid var(--border);position:relative}
+.main-tab{flex:1;padding:12px 8px;border:none;border-radius:10px;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.5px;text-transform:uppercase}
+.main-tab.active{background:linear-gradient(135deg,rgba(240,165,0,.2),rgba(240,165,0,.08));color:var(--gold);border:1px solid rgba(240,165,0,.3);box-shadow:0 2px 12px rgba(240,165,0,.15)}
+.main-tab.leg2-tab.active{background:linear-gradient(135deg,rgba(91,163,232,.2),rgba(91,163,232,.08));color:var(--blue);border-color:rgba(91,163,232,.3);box-shadow:0 2px 12px rgba(91,163,232,.15)}
+.leg-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;margin-left:4px;font-weight:700;vertical-align:middle}
+.leg1-badge{background:rgba(240,165,0,.15);color:var(--gold)}
+.leg2-badge{background:rgba(91,163,232,.15);color:var(--blue)}
+
+/* Inner tabs per leg */
+.tabs{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:12px;margin:20px 0 24px;border:1px solid var(--border)}
 .tab{flex:1;padding:10px 6px;border:none;border-radius:9px;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;letter-spacing:.3px;white-space:nowrap}
 .tab.active{background:var(--card);color:var(--text);box-shadow:0 1px 8px rgba(0,0,0,.4)}
+
+.leg-section{display:none}
+.leg-section.active{display:block}
+
+/* Trade banner */
+.trade-banner{background:linear-gradient(135deg,rgba(91,163,232,.08),rgba(91,163,232,.04));border:1px solid rgba(91,163,232,.25);border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--muted);line-height:1.8}
+.trade-banner strong{color:var(--blue);font-weight:600}
+.trade-pill{display:inline-flex;align-items:center;gap:4px;background:rgba(91,163,232,.12);border:1px solid rgba(91,163,232,.2);border-radius:20px;padding:2px 10px;font-size:11px;color:var(--blue);margin:2px 3px;font-weight:500}
 
 .podium{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:12px;margin-bottom:24px;align-items:end}
 .podium-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 14px;text-align:center;cursor:pointer;transition:transform .2s,border-color .2s;animation:fadeUp .5s ease both}
@@ -41,6 +59,10 @@ header{text-align:center;padding:60px 20px 36px}
 .p1 .podium-pts{color:var(--gold)}
 .podium-label{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
 .podium-meta{font-size:11px;color:var(--muted);margin-top:8px}
+.podium-breakdown{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.pb-chip{font-size:10px;padding:2px 7px;border-radius:8px;font-weight:500}
+.pb-l1{background:rgba(240,165,0,.12);color:var(--gold)}
+.pb-l2{background:rgba(91,163,232,.12);color:var(--blue)}
 
 .lb-list{display:flex;flex-direction:column;gap:8px}
 .lb-row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 16px;cursor:pointer;transition:all .2s;animation:fadeUp .4s ease both}
@@ -52,6 +74,8 @@ header{text-align:center;padding:60px 20px 36px}
 .lb-pts-label{font-size:10px;color:var(--muted);text-align:right;letter-spacing:2px}
 .lb-bar-wrap{grid-column:1/-1;margin-top:-2px;height:2px;background:rgba(255,255,255,.05);border-radius:2px;overflow:hidden}
 .lb-bar{height:100%;background:linear-gradient(90deg,var(--gold),#FFD166);border-radius:2px;transition:width 1s ease}
+.lb-breakdown{display:flex;gap:8px;margin-top:4px}
+.lb-chip{font-size:10px;padding:1px 6px;border-radius:6px;font-weight:500}
 
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--muted);margin-bottom:14px;margin-top:28px}
 .section-title:first-child{margin-top:0}
@@ -93,6 +117,7 @@ header{text-align:center;padding:60px 20px 36px}
 .sc-body{padding:10px 14px 14px}
 .player-chip{display:inline-block;margin:2px 3px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;border:1px solid var(--border);color:var(--muted)}
 .player-chip.has-pts{color:var(--text);border-color:rgba(240,165,0,.25);background:rgba(240,165,0,.07)}
+.player-chip.traded-in{border-color:rgba(91,163,232,.4);background:rgba(91,163,232,.08);color:var(--blue)}
 
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;justify-content:center;align-items:flex-end;backdrop-filter:blur(4px)}
 .modal-overlay.open{display:flex}
@@ -112,6 +137,7 @@ header{text-align:center;padding:60px 20px 36px}
 .vr-mid{background:rgba(240,165,0,.12);color:var(--gold)}
 .vr-bad{background:rgba(224,92,92,.12);color:var(--red)}
 .close-btn{position:absolute;top:22px;right:20px;background:var(--card);border:1px solid var(--border);color:var(--muted);width:32px;height:32px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.traded-tag{font-size:9px;padding:1px 6px;border-radius:4px;background:rgba(91,163,232,.15);color:var(--blue);font-weight:700;margin-left:4px;vertical-align:middle}
 
 .rb{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:600;letter-spacing:.5px;white-space:nowrap}
 .rb-bat{background:rgba(56,130,221,.15);color:#5BA3E8}
@@ -119,9 +145,13 @@ header{text-align:center;padding:60px 20px 36px}
 .rb-ar{background:rgba(240,165,0,.12);color:#F0A500}
 .rb-wk{background:rgba(212,83,126,.15);color:#E87AAF}
 
+/* Overall standings specific */
+.overall-header{background:linear-gradient(135deg,rgba(240,165,0,.1),rgba(240,165,0,.04));border:1px solid rgba(240,165,0,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:12px;color:var(--muted);text-align:center}
+.overall-header strong{color:var(--gold)}
+
 footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:12px;letter-spacing:1px;border-top:1px solid var(--border);margin-top:60px}
 @media(max-width:500px){
-  .podium{gap:6px}.tab{font-size:11px;padding:9px 3px}
+  .podium{gap:6px}.tab{font-size:11px;padding:9px 3px}.main-tab{font-size:11px}
   .squad-grid,.value-grid{grid-template-columns:1fr}
   .modal-player{grid-template-columns:1fr auto auto}.mp-vr{display:none}
 }
@@ -133,44 +163,123 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:12px;let
     <div class="trophy">🏆</div>
     <div class="site-title">The Dugout</div>
     <div class="site-sub">IPL Fantasy Leaderboard 2026 &bull; Mock Auction</div>
-    <div class="match-badge"><span class="dot"></span>Live after Match 35 &bull; Updated 26 Apr 2026</div>
+    <div class="match-badge"><span class="dot"></span>Live after Match 36 &bull; Updated 26 Apr 2026</div>
   </header>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('standings',this)">Standings</button>
-    <button class="tab" onclick="showTab('squads',this)">Squads</button>
-    <button class="tab" onclick="showTab('stats',this)">Stats</button>
-    <button class="tab" onclick="showTab('value',this)">Value Buy</button>
+  <!-- Main leg navigation -->
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="showLeg('overall',this)">🏆 Overall</button>
+    <button class="main-tab" onclick="showLeg('leg1',this)">Leg 1 <span class="leg-badge leg1-badge">M1–35</span></button>
+    <button class="main-tab leg2-tab" onclick="showLeg('leg2',this)">Leg 2 <span class="leg-badge leg2-badge">M36+</span></button>
   </div>
 
-  <div id="tab-standings">
-    <div class="podium" id="podium"></div>
-    <div class="lb-list" id="lbList"></div>
-  </div>
-  <div id="tab-squads" style="display:none"><div class="squad-grid" id="squadGrid"></div></div>
-  <div id="tab-stats" style="display:none">
-    <div class="section-title">Points by team</div>
-    <div class="chart-wrap"><canvas id="teamChart"></canvas></div>
-    <div class="section-title">Top 10 scorers</div>
-    <div id="topScorers"></div>
-  </div>
-  <div id="tab-value" style="display:none">
-    <div class="section-title">Highlights</div>
-    <div class="value-grid" id="valueHighlights"></div>
-    <div class="section-title">Full value table</div>
-    <div style="overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:4px 0">
-      <table class="vb-table">
-        <thead><tr>
-          <th onclick="sortTable('name')">Player <span class="sort-arrow" id="arr-name"></span></th>
-          <th onclick="sortTable('owner')">Owner <span class="sort-arrow" id="arr-owner"></span></th>
-          <th onclick="sortTable('price')">Price <span class="sort-arrow" id="arr-price"></span></th>
-          <th onclick="sortTable('pts')">Points <span class="sort-arrow" id="arr-pts"></span></th>
-          <th onclick="sortTable('vr')">Pts/Cr <span class="sort-arrow" id="arr-vr">▼</span></th>
-        </tr></thead>
-        <tbody id="valueTableBody"></tbody>
-      </table>
+  <!-- ===================== OVERALL ===================== -->
+  <div class="leg-section active" id="leg-overall">
+    <div class="overall-header">
+      <strong>Overall Standings</strong> — Leg 1 (M1–35) + Leg 2 (M36+) combined &bull; Trades applied from Match 36
     </div>
-    <div style="font-size:11px;color:var(--muted);margin-top:10px;padding:0 4px">Pts/Cr = fantasy points per crore spent. Higher = better value. Only players with points shown.</div>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('overall','standings',this)">Standings</button>
+      <button class="tab" onclick="showTab('overall','squads',this)">Squads</button>
+      <button class="tab" onclick="showTab('overall','stats',this)">Stats</button>
+    </div>
+    <div id="overall-tab-standings">
+      <div class="podium" id="overall-podium"></div>
+      <div class="lb-list" id="overall-lbList"></div>
+    </div>
+    <div id="overall-tab-squads" style="display:none"><div class="squad-grid" id="overall-squadGrid"></div></div>
+    <div id="overall-tab-stats" style="display:none">
+      <div class="section-title">Points by team</div>
+      <div class="chart-wrap"><canvas id="overall-teamChart"></canvas></div>
+      <div class="section-title">Top 10 scorers (Overall)</div>
+      <div id="overall-topScorers"></div>
+    </div>
+  </div>
+
+  <!-- ===================== LEG 1 ===================== -->
+  <div class="leg-section" id="leg-leg1">
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('leg1','standings',this)">Standings</button>
+      <button class="tab" onclick="showTab('leg1','squads',this)">Squads</button>
+      <button class="tab" onclick="showTab('leg1','stats',this)">Stats</button>
+      <button class="tab" onclick="showTab('leg1','value',this)">Value Buy</button>
+    </div>
+    <div id="leg1-tab-standings">
+      <div class="podium" id="leg1-podium"></div>
+      <div class="lb-list" id="leg1-lbList"></div>
+    </div>
+    <div id="leg1-tab-squads" style="display:none"><div class="squad-grid" id="leg1-squadGrid"></div></div>
+    <div id="leg1-tab-stats" style="display:none">
+      <div class="section-title">Points by team (Leg 1)</div>
+      <div class="chart-wrap"><canvas id="leg1-teamChart"></canvas></div>
+      <div class="section-title">Top 10 scorers (Leg 1)</div>
+      <div id="leg1-topScorers"></div>
+    </div>
+    <div id="leg1-tab-value" style="display:none">
+      <div class="section-title">Highlights</div>
+      <div class="value-grid" id="leg1-valueHighlights"></div>
+      <div class="section-title">Full value table</div>
+      <div style="overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:4px 0">
+        <table class="vb-table">
+          <thead><tr>
+            <th onclick="sortTable('leg1','name')">Player <span class="sort-arrow" id="leg1-arr-name"></span></th>
+            <th onclick="sortTable('leg1','owner')">Owner <span class="sort-arrow" id="leg1-arr-owner"></span></th>
+            <th onclick="sortTable('leg1','price')">Price <span class="sort-arrow" id="leg1-arr-price"></span></th>
+            <th onclick="sortTable('leg1','pts')">Points <span class="sort-arrow" id="leg1-arr-pts"></span></th>
+            <th onclick="sortTable('leg1','vr')">Pts/Cr <span class="sort-arrow" id="leg1-arr-vr">▼</span></th>
+          </tr></thead>
+          <tbody id="leg1-valueTableBody"></tbody>
+        </table>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px;padding:0 4px">Pts/Cr = fantasy points per crore spent. Higher = better value.</div>
+    </div>
+  </div>
+
+  <!-- ===================== LEG 2 ===================== -->
+  <div class="leg-section" id="leg-leg2">
+    <div class="trade-banner">
+      <strong>🔄 Leg 2 Trades (effective from Match 36)</strong><br>
+      <span class="trade-pill">Washington Sundar</span> Ashish → <strong style="color:var(--blue)">Ambu</strong> &nbsp;
+      <span class="trade-pill">Yuzvendra Chahal</span> Ambu → <strong style="color:var(--blue)">Ashish</strong><br>
+      <span class="trade-pill">Sameer Rizvi</span> Ashish → <strong style="color:var(--blue)">Lokesh</strong> &nbsp;
+      <span class="trade-pill">Mayank Yadav</span> Ashish → <strong style="color:var(--blue)">Lokesh</strong> &nbsp;
+      <span class="trade-pill">Ravindra Jadeja</span> Lokesh → <strong style="color:var(--blue)">Ashish</strong>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('leg2','standings',this)">Standings</button>
+      <button class="tab" onclick="showTab('leg2','squads',this)">Squads</button>
+      <button class="tab" onclick="showTab('leg2','stats',this)">Stats</button>
+      <button class="tab" onclick="showTab('leg2','value',this)">Value Buy</button>
+    </div>
+    <div id="leg2-tab-standings">
+      <div class="podium" id="leg2-podium"></div>
+      <div class="lb-list" id="leg2-lbList"></div>
+    </div>
+    <div id="leg2-tab-squads" style="display:none"><div class="squad-grid" id="leg2-squadGrid"></div></div>
+    <div id="leg2-tab-stats" style="display:none">
+      <div class="section-title">Points by team (Leg 2)</div>
+      <div class="chart-wrap"><canvas id="leg2-teamChart"></canvas></div>
+      <div class="section-title">Top 10 scorers (Leg 2)</div>
+      <div id="leg2-topScorers"></div>
+    </div>
+    <div id="leg2-tab-value" style="display:none">
+      <div class="section-title">Highlights</div>
+      <div class="value-grid" id="leg2-valueHighlights"></div>
+      <div class="section-title">Full value table</div>
+      <div style="overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:4px 0">
+        <table class="vb-table">
+          <thead><tr>
+            <th onclick="sortTable('leg2','name')">Player <span class="sort-arrow" id="leg2-arr-name"></span></th>
+            <th onclick="sortTable('leg2','owner')">Owner <span class="sort-arrow" id="leg2-arr-owner"></span></th>
+            <th onclick="sortTable('leg2','price')">Price <span class="sort-arrow" id="leg2-arr-price"></span></th>
+            <th onclick="sortTable('leg2','pts')">Points <span class="sort-arrow" id="leg2-arr-pts"></span></th>
+            <th onclick="sortTable('leg2','vr')">Pts/Cr <span class="sort-arrow" id="leg2-arr-vr">▼</span></th>
+          </tr></thead>
+          <tbody id="leg2-valueTableBody"></tbody>
+        </table>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px;padding:0 4px">Pts/Cr = fantasy points per crore spent. Higher = better value. Only players with Leg 2 points shown.</div>
+    </div>
   </div>
 </div>
 
@@ -188,79 +297,137 @@ footer{text-align:center;padding:40px 20px;color:var(--muted);font-size:12px;let
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-const SQUADS={Lokesh:["Prabhsimran Singh","Matheesha Pathirana","Navdeep Saini","Jasprit Bumrah","Ravi Bishnoi","Riyan Parag","Ravindra Jadeja","George Linde","Liam Livingstone","Kartik Sharma","Tristan Stubbs","Cameron Green","Dhruv Jurel","Digvesh Singh","Will Jacks","Vipraj Nigam","Vaibhav Arora","Auqib Nabi","Mangesh Yadav"],Tharun:["Sai Sudharsan","Suryakumar Yadav","Varun Chakaravarthy","Trent Boult","T Natarajan","Yashasvi Jaiswal","Mitchell Marsh","Priyansh Arya","Quinton de Kock","Ayush Mhatre","Angkrish Raghuvanshi","Glenn Phillips","Sandeep Sharma","Nandre Burger","Nitish Rana","Dilshan Madushanka","Akash Madhwal"],Gopi:["Rajat Patidar","Ruturaj Gaikwad","Noor Ahmad","Khaleel Ahmed","Deepak Chahar","Yash Dayal","Tilak Varma","Abhishek Sharma","Ryan Rickelton","Jitesh Sharma","Akeal Hosein","Lockie Ferguson","Rahul Chahar","Vignesh Puthur","Rachin Ravindra","Romario Shepherd","Rahul Tewatia","Manimaran Siddharth"],Moheeth:["KL Rahul","Heinrich Klaasen","Travis Head","Jofra Archer","Mohammed Siraj","Kagiso Rabada","Jason Holder","Sunil Narine","Shahrukh Khan","Rinku Singh","Sanju Samson","Abishek Porel","Tushar Deshpande","Saurabh Dubey","Shashank Singh","Shardul Thakur","Harshal Patel","Sai Kishore","Ayush Badoni","Abdul Samad"],Mama:["Shreyas Iyer","Jos Buttler","Phil Salt","Rashid Khan","Prasidh Krishna","Axar Patel","Pat Cummins","Krunal Pandya","Prashant Veer","Pathum Nissanka","Aniket Verma","Spencer Johnson","Vijaykumar Vyshak","Rahul Tripathi","Akash Singh","Arshad Khan"],Vikki:["Virat Kohli","Nicholas Pooran","Rohit Sharma","Ishan Kishan","Mitchell Starc","Avesh Khan","Shivam Dube","Azmatullah Omarzai","Venkatesh Iyer","Mitchell Santner","Lungi Ngidi","Marcus Stoinis","Ashutosh Sharma","Anuj Rawat","Karun Nair","Ashwani Kumar"],Ambu:["Aiden Markram","Vaibhav Sooryavanshi","Arshdeep Singh","Yuzvendra Chahal","Bhuvneshwar Kumar","Hardik Pandya","Dasun Shanaka","Nitish Kumar Reddy","Finn Allen","Sherfane Rutherford","Shimron Hetmyer","MS Dhoni","Jaydev Unadkat","Suyash Sharma","Prithvi Shaw","Umran Malik","Yash Thakur","Kamindu Mendis","Naman Dhir","Harpreet Brar"],Ashish:["Shubman Gill","Dewald Brevis","Rishabh Pant","Kuldeep Yadav","Mukesh Kumar","Josh Hazlewood","Mohammad Shami","Washington Sundar","Marco Jansen","Ajinkya Rahane","Tim David","Matt Henry","Mayank Yadav","Ramandeep Singh","Jacob Bethell","Urvil Patel","Devdutt Padikkal","Mohsin Khan","Sameer Rizvi","Anshul Kamboj"]};
+// ─── SQUADS LEG 1 (original) ───────────────────────────────────────────────
+const SQUADS_L1 = {
+  Lokesh:["Prabhsimran Singh","Matheesha Pathirana","Navdeep Saini","Jasprit Bumrah","Ravi Bishnoi","Riyan Parag","Ravindra Jadeja","George Linde","Liam Livingstone","Kartik Sharma","Tristan Stubbs","Cameron Green","Dhruv Jurel","Digvesh Singh","Will Jacks","Vipraj Nigam","Vaibhav Arora","Auqib Nabi","Mangesh Yadav"],
+  Tharun:["Sai Sudharsan","Suryakumar Yadav","Varun Chakaravarthy","Trent Boult","T Natarajan","Yashasvi Jaiswal","Mitchell Marsh","Priyansh Arya","Quinton de Kock","Ayush Mhatre","Angkrish Raghuvanshi","Glenn Phillips","Sandeep Sharma","Nandre Burger","Nitish Rana","Dilshan Madushanka","Akash Madhwal"],
+  Gopi:["Rajat Patidar","Ruturaj Gaikwad","Noor Ahmad","Khaleel Ahmed","Deepak Chahar","Yash Dayal","Tilak Varma","Abhishek Sharma","Ryan Rickelton","Jitesh Sharma","Akeal Hosein","Lockie Ferguson","Rahul Chahar","Vignesh Puthur","Rachin Ravindra","Romario Shepherd","Rahul Tewatia","Manimaran Siddharth"],
+  Moheeth:["KL Rahul","Heinrich Klaasen","Travis Head","Jofra Archer","Mohammed Siraj","Kagiso Rabada","Jason Holder","Sunil Narine","Shahrukh Khan","Rinku Singh","Sanju Samson","Abishek Porel","Tushar Deshpande","Saurabh Dubey","Shashank Singh","Shardul Thakur","Harshal Patel","Sai Kishore","Ayush Badoni","Abdul Samad"],
+  Mama:["Shreyas Iyer","Jos Buttler","Phil Salt","Rashid Khan","Prasidh Krishna","Axar Patel","Pat Cummins","Krunal Pandya","Prashant Veer","Pathum Nissanka","Aniket Verma","Spencer Johnson","Vijaykumar Vyshak","Rahul Tripathi","Akash Singh","Arshad Khan"],
+  Vikki:["Virat Kohli","Nicholas Pooran","Rohit Sharma","Ishan Kishan","Mitchell Starc","Avesh Khan","Shivam Dube","Azmatullah Omarzai","Venkatesh Iyer","Mitchell Santner","Lungi Ngidi","Marcus Stoinis","Ashutosh Sharma","Anuj Rawat","Karun Nair","Ashwani Kumar"],
+  Ambu:["Aiden Markram","Vaibhav Sooryavanshi","Arshdeep Singh","Yuzvendra Chahal","Bhuvneshwar Kumar","Hardik Pandya","Dasun Shanaka","Nitish Kumar Reddy","Finn Allen","Sherfane Rutherford","Shimron Hetmyer","MS Dhoni","Jaydev Unadkat","Suyash Sharma","Prithvi Shaw","Umran Malik","Yash Thakur","Kamindu Mendis","Naman Dhir","Harpreet Brar"],
+  Ashish:["Shubman Gill","Dewald Brevis","Rishabh Pant","Kuldeep Yadav","Mukesh Kumar","Josh Hazlewood","Mohammad Shami","Washington Sundar","Marco Jansen","Ajinkya Rahane","Tim David","Matt Henry","Mayank Yadav","Ramandeep Singh","Jacob Bethell","Urvil Patel","Devdutt Padikkal","Mohsin Khan","Sameer Rizvi","Anshul Kamboj"]
+};
+
+// ─── SQUADS LEG 2 (with trades applied) ────────────────────────────────────
+const SQUADS_L2 = {
+  Lokesh:["Prabhsimran Singh","Matheesha Pathirana","Navdeep Saini","Jasprit Bumrah","Ravi Bishnoi","Riyan Parag","George Linde","Liam Livingstone","Kartik Sharma","Tristan Stubbs","Cameron Green","Dhruv Jurel","Digvesh Singh","Will Jacks","Vipraj Nigam","Vaibhav Arora","Auqib Nabi","Mangesh Yadav","Sameer Rizvi","Mayank Yadav"],
+  Tharun:["Sai Sudharsan","Suryakumar Yadav","Varun Chakaravarthy","Trent Boult","T Natarajan","Yashasvi Jaiswal","Mitchell Marsh","Priyansh Arya","Quinton de Kock","Ayush Mhatre","Angkrish Raghuvanshi","Glenn Phillips","Sandeep Sharma","Nandre Burger","Nitish Rana","Dilshan Madushanka","Akash Madhwal"],
+  Gopi:["Rajat Patidar","Ruturaj Gaikwad","Noor Ahmad","Khaleel Ahmed","Deepak Chahar","Yash Dayal","Tilak Varma","Abhishek Sharma","Ryan Rickelton","Jitesh Sharma","Akeal Hosein","Lockie Ferguson","Rahul Chahar","Vignesh Puthur","Rachin Ravindra","Romario Shepherd","Rahul Tewatia","Manimaran Siddharth"],
+  Moheeth:["KL Rahul","Heinrich Klaasen","Travis Head","Jofra Archer","Mohammed Siraj","Kagiso Rabada","Jason Holder","Sunil Narine","Shahrukh Khan","Rinku Singh","Sanju Samson","Abishek Porel","Tushar Deshpande","Saurabh Dubey","Shashank Singh","Shardul Thakur","Harshal Patel","Sai Kishore","Ayush Badoni","Abdul Samad"],
+  Mama:["Shreyas Iyer","Jos Buttler","Phil Salt","Rashid Khan","Prasidh Krishna","Axar Patel","Pat Cummins","Krunal Pandya","Prashant Veer","Pathum Nissanka","Aniket Verma","Spencer Johnson","Vijaykumar Vyshak","Rahul Tripathi","Akash Singh","Arshad Khan"],
+  Vikki:["Virat Kohli","Nicholas Pooran","Rohit Sharma","Ishan Kishan","Mitchell Starc","Avesh Khan","Shivam Dube","Azmatullah Omarzai","Venkatesh Iyer","Mitchell Santner","Lungi Ngidi","Marcus Stoinis","Ashutosh Sharma","Anuj Rawat","Karun Nair","Ashwani Kumar"],
+  Ambu:["Aiden Markram","Vaibhav Sooryavanshi","Arshdeep Singh","Bhuvneshwar Kumar","Hardik Pandya","Dasun Shanaka","Nitish Kumar Reddy","Finn Allen","Sherfane Rutherford","Shimron Hetmyer","MS Dhoni","Jaydev Unadkat","Suyash Sharma","Prithvi Shaw","Umran Malik","Yash Thakur","Kamindu Mendis","Naman Dhir","Harpreet Brar","Washington Sundar"],
+  Ashish:["Shubman Gill","Dewald Brevis","Rishabh Pant","Kuldeep Yadav","Mukesh Kumar","Josh Hazlewood","Mohammad Shami","Marco Jansen","Ajinkya Rahane","Tim David","Matt Henry","Ramandeep Singh","Jacob Bethell","Urvil Patel","Devdutt Padikkal","Mohsin Khan","Anshul Kamboj","Yuzvendra Chahal","Ravindra Jadeja"]
+};
+
+// Traded players (for highlighting)
+const TRADED = new Set(["Washington Sundar","Yuzvendra Chahal","Sameer Rizvi","Mayank Yadav","Ravindra Jadeja"]);
 
 const ROLES={"Prabhsimran Singh":"bat","Matheesha Pathirana":"bowl","Navdeep Saini":"bowl","Jasprit Bumrah":"bowl","Ravi Bishnoi":"bowl","Riyan Parag":"ar","Ravindra Jadeja":"ar","George Linde":"ar","Liam Livingstone":"ar","Kartik Sharma":"bat","Tristan Stubbs":"bat","Cameron Green":"ar","Dhruv Jurel":"wk","Digvesh Singh":"bowl","Will Jacks":"ar","Vipraj Nigam":"bowl","Vaibhav Arora":"bowl","Auqib Nabi":"ar","Mangesh Yadav":"bowl","Sai Sudharsan":"bat","Suryakumar Yadav":"bat","Varun Chakaravarthy":"bowl","Trent Boult":"bowl","T Natarajan":"bowl","Yashasvi Jaiswal":"bat","Mitchell Marsh":"ar","Priyansh Arya":"bat","Quinton de Kock":"wk","Ayush Mhatre":"bat","Angkrish Raghuvanshi":"bat","Glenn Phillips":"ar","Sandeep Sharma":"bowl","Nandre Burger":"bowl","Nitish Rana":"bat","Dilshan Madushanka":"bowl","Akash Madhwal":"bowl","Rajat Patidar":"bat","Ruturaj Gaikwad":"bat","Noor Ahmad":"bowl","Khaleel Ahmed":"bowl","Deepak Chahar":"ar","Yash Dayal":"bowl","Tilak Varma":"bat","Abhishek Sharma":"ar","Ryan Rickelton":"wk","Jitesh Sharma":"wk","Akeal Hosein":"ar","Lockie Ferguson":"bowl","Rahul Chahar":"bowl","Vignesh Puthur":"bowl","Rachin Ravindra":"bat","Romario Shepherd":"ar","Rahul Tewatia":"ar","Manimaran Siddharth":"bowl","KL Rahul":"wk","Heinrich Klaasen":"wk","Travis Head":"bat","Jofra Archer":"bowl","Mohammed Siraj":"bowl","Kagiso Rabada":"bowl","Jason Holder":"ar","Sunil Narine":"ar","Shahrukh Khan":"bat","Rinku Singh":"bat","Sanju Samson":"wk","Abishek Porel":"wk","Tushar Deshpande":"bowl","Saurabh Dubey":"bowl","Shashank Singh":"bat","Shardul Thakur":"ar","Harshal Patel":"ar","Sai Kishore":"bowl","Ayush Badoni":"bat","Abdul Samad":"ar","Shreyas Iyer":"bat","Jos Buttler":"wk","Phil Salt":"wk","Rashid Khan":"ar","Prasidh Krishna":"bowl","Axar Patel":"ar","Pat Cummins":"ar","Krunal Pandya":"ar","Prashant Veer":"bowl","Pathum Nissanka":"bat","Aniket Verma":"bat","Spencer Johnson":"bowl","Vijaykumar Vyshak":"bowl","Rahul Tripathi":"bat","Akash Singh":"bowl","Arshad Khan":"bowl","Virat Kohli":"bat","Nicholas Pooran":"wk","Rohit Sharma":"bat","Ishan Kishan":"wk","Mitchell Starc":"bowl","Avesh Khan":"bowl","Shivam Dube":"ar","Azmatullah Omarzai":"ar","Venkatesh Iyer":"ar","Mitchell Santner":"ar","Lungi Ngidi":"bowl","Marcus Stoinis":"ar","Ashutosh Sharma":"ar","Anuj Rawat":"wk","Karun Nair":"bat","Ashwani Kumar":"bowl","Aiden Markram":"ar","Vaibhav Sooryavanshi":"bat","Arshdeep Singh":"bowl","Yuzvendra Chahal":"bowl","Bhuvneshwar Kumar":"bowl","Hardik Pandya":"ar","Dasun Shanaka":"ar","Nitish Kumar Reddy":"ar","Finn Allen":"wk","Sherfane Rutherford":"bat","Shimron Hetmyer":"bat","MS Dhoni":"wk","Jaydev Unadkat":"bowl","Suyash Sharma":"bowl","Prithvi Shaw":"bat","Umran Malik":"bowl","Yash Thakur":"bowl","Kamindu Mendis":"ar","Naman Dhir":"bat","Harpreet Brar":"ar","Shubman Gill":"bat","Dewald Brevis":"bat","Rishabh Pant":"wk","Kuldeep Yadav":"bowl","Mukesh Kumar":"bowl","Josh Hazlewood":"bowl","Mohammad Shami":"bowl","Washington Sundar":"ar","Marco Jansen":"ar","Ajinkya Rahane":"bat","Tim David":"bat","Matt Henry":"bowl","Mayank Yadav":"bowl","Ramandeep Singh":"ar","Jacob Bethell":"ar","Urvil Patel":"bat","Devdutt Padikkal":"bat","Mohsin Khan":"bowl","Sameer Rizvi":"bat","Anshul Kamboj":"bowl"};
 
-// Match 34 updated cumulative points
-const POINTS={"Ryan Rickelton":220,"Ishan Kishan":408,"Rohit Sharma":204,"Virat Kohli":508,"Ajinkya Rahane":240,"Prasidh Krishna":334,"Vaibhav Sooryavanshi":402,"Shardul Thakur":165,"Vijaykumar Vyshak":176,"Angkrish Raghuvanshi":313,"Romario Shepherd":161,"Shubman Gill":460,"Anshul Kamboj":459,"Jofra Archer":397,"Aniket Verma":157,"Ravindra Jadeja":362,"Nandre Burger":237,"Heinrich Klaasen":498,"Jos Buttler":436,"Finn Allen":138,"Yashasvi Jaiswal":382,"Prabhsimran Singh":476,"Rinku Singh":241,"Washington Sundar":285,"Hardik Pandya":232,"Yuzvendra Chahal":132,"Rajat Patidar":408,"Marco Jansen":185,"Ravi Bishnoi":349,"Dhruv Jurel":388,"Tilak Varma":328,"Phil Salt":348,"Jaydev Unadkat":144,"Shreyas Iyer":450,"Rashid Khan":285,"Glenn Phillips":165,"Cameron Green":285,"Bhuvneshwar Kumar":354,"Sandeep Sharma":163,"Suyash Sharma":147,"Sunil Narine":246,"Tim David":293,"Kagiso Rabada":360,"Kartik Sharma":67,"Suryakumar Yadav":242,"Vaibhav Arora":210,"Riyan Parag":205,"Sai Sudharsan":365,"Arshdeep Singh":225,"Travis Head":268,"Rahul Tewatia":99,"Abhishek Sharma":510,"Priyansh Arya":392,"Shivam Dube":238,"Sherfane Rutherford":183,"Sanju Samson":458,"Naman Dhir":277,"Shimron Hetmyer":142,"Jitesh Sharma":157,"Shashank Singh":203,"Khaleel Ahmed":70,"Ramandeep Singh":175,"Ruturaj Gaikwad":179,"Nitish Kumar Reddy":359,"Jasprit Bumrah":110,"Trent Boult":40,"Mohammed Siraj":227,"Matt Henry":68,"Marcus Stoinis":100,"Ayush Mhatre":311,"Noor Ahmad":222,"Rishabh Pant":281,"Kuldeep Yadav":237,"Mukesh Kumar":183,"Mohammad Shami":244,"Mohsin Khan":162,"Sameer Rizvi":322,"Axar Patel":253,"Pathum Nissanka":246,"Aiden Markram":281,"KL Rahul":541,"Ayush Badoni":226,"Abdul Samad":115,"Nicholas Pooran":148,"Lungi Ngidi":230,"T Natarajan":127,"Mitchell Marsh":320,"Nitish Rana":281,"Tristan Stubbs":310,"Vipraj Nigam":74,"Varun Chakaravarthy":167,"Shahrukh Khan":87,"Devdutt Padikkal":385,"Harshal Patel":9,"Prashant Veer":72,"Rahul Chahar":8,"Mitchell Santner":194,"Deepak Chahar":48,"Tushar Deshpande":120,"Krunal Pandya":279,"Liam Livingstone":57,"Digvesh Singh":115,"Manimaran Siddharth":124,"Avesh Khan":164,"Navdeep Saini":2,"Josh Hazlewood":146,"Venkatesh Iyer":44,"Dewald Brevis":161,"Akeal Hosein":189,"Auqib Nabi":5,"Ashutosh Sharma":56,"George Linde":39,"Quinton de Kock":221,"Karun Nair":10,"Ashwani Kumar":169,"Dilshan Madushanka":45,"Mayank Yadav":4,"Akash Madhwal":0,"Jason Holder":71,"Jacob Bethell":23};
+// Leg 1 = points after match 35 (frozen)
+const POINTS_L1={"Ryan Rickelton":220,"Ishan Kishan":408,"Rohit Sharma":204,"Virat Kohli":508,"Ajinkya Rahane":240,"Prasidh Krishna":334,"Vaibhav Sooryavanshi":402,"Shardul Thakur":165,"Vijaykumar Vyshak":176,"Angkrish Raghuvanshi":313,"Romario Shepherd":161,"Shubman Gill":460,"Anshul Kamboj":459,"Jofra Archer":397,"Aniket Verma":157,"Ravindra Jadeja":362,"Nandre Burger":237,"Heinrich Klaasen":498,"Jos Buttler":436,"Finn Allen":138,"Yashasvi Jaiswal":382,"Prabhsimran Singh":476,"Rinku Singh":241,"Washington Sundar":285,"Hardik Pandya":232,"Yuzvendra Chahal":132,"Rajat Patidar":408,"Marco Jansen":185,"Ravi Bishnoi":349,"Dhruv Jurel":388,"Tilak Varma":328,"Phil Salt":348,"Jaydev Unadkat":144,"Shreyas Iyer":450,"Rashid Khan":285,"Glenn Phillips":165,"Cameron Green":285,"Bhuvneshwar Kumar":354,"Sandeep Sharma":163,"Suyash Sharma":147,"Sunil Narine":246,"Tim David":293,"Kagiso Rabada":360,"Kartik Sharma":67,"Suryakumar Yadav":242,"Vaibhav Arora":210,"Riyan Parag":205,"Sai Sudharsan":365,"Arshdeep Singh":225,"Travis Head":268,"Rahul Tewatia":99,"Abhishek Sharma":510,"Priyansh Arya":392,"Shivam Dube":238,"Sherfane Rutherford":183,"Sanju Samson":458,"Naman Dhir":277,"Shimron Hetmyer":142,"Jitesh Sharma":157,"Shashank Singh":203,"Khaleel Ahmed":70,"Ramandeep Singh":175,"Ruturaj Gaikwad":179,"Nitish Kumar Reddy":359,"Jasprit Bumrah":110,"Trent Boult":40,"Mohammed Siraj":227,"Matt Henry":68,"Marcus Stoinis":100,"Ayush Mhatre":311,"Noor Ahmad":222,"Rishabh Pant":281,"Kuldeep Yadav":237,"Mukesh Kumar":183,"Mohammad Shami":244,"Mohsin Khan":162,"Sameer Rizvi":322,"Axar Patel":253,"Pathum Nissanka":246,"Aiden Markram":281,"KL Rahul":541,"Ayush Badoni":226,"Abdul Samad":115,"Nicholas Pooran":148,"Lungi Ngidi":230,"T Natarajan":127,"Mitchell Marsh":320,"Nitish Rana":281,"Tristan Stubbs":310,"Vipraj Nigam":74,"Varun Chakaravarthy":167,"Shahrukh Khan":87,"Devdutt Padikkal":385,"Harshal Patel":9,"Prashant Veer":72,"Rahul Chahar":8,"Mitchell Santner":194,"Deepak Chahar":48,"Tushar Deshpande":120,"Krunal Pandya":279,"Liam Livingstone":57,"Digvesh Singh":115,"Manimaran Siddharth":124,"Avesh Khan":164,"Navdeep Saini":2,"Josh Hazlewood":146,"Venkatesh Iyer":44,"Dewald Brevis":161,"Akeal Hosein":189,"Auqib Nabi":5,"Ashutosh Sharma":56,"George Linde":39,"Quinton de Kock":221,"Karun Nair":10,"Ashwani Kumar":169,"Dilshan Madushanka":45,"Mayank Yadav":4,"Akash Madhwal":0,"Jason Holder":71,"Jacob Bethell":23};
 
-const PRICES={"Hardik Pandya":18,"Virat Kohli":17,"Ishan Kishan":15,"Abhishek Sharma":14.5,"Jasprit Bumrah":14.25,"Tilak Varma":14.25,"Shubman Gill":14,"Suryakumar Yadav":14,"Shivam Dube":14,"Shreyas Iyer":13.75,"Yashasvi Jaiswal":13.5,"Ruturaj Gaikwad":12.75,"Aiden Markram":12.5,"Sai Sudharsan":12.25,"Dewald Brevis":12,"Travis Head":12,"Axar Patel":12,"Vaibhav Sooryavanshi":11.75,"KL Rahul":11.5,"Prabhsimran Singh":11.25,"Ravindra Jadeja":11,"Nicholas Pooran":10.75,"Heinrich Klaasen":10.5,"Rajat Patidar":10.5,"Arshdeep Singh":10.25,"Rohit Sharma":10,"Riyan Parag":10,"Mitchell Marsh":10,"Varun Chakaravarthy":9.75,"Krunal Pandya":9.75,"Phil Salt":9.5,"Prashant Veer":9.25,"Kuldeep Yadav":9,"Noor Ahmad":8.75,"Jos Buttler":8.5,"Rishabh Pant":8.5,"Josh Hazlewood":8.5,"Sunil Narine":8.5,"Harshit Rana":8.25,"Prasidh Krishna":8.25,"Mitchell Starc":8,"Rashid Khan":8,"Trent Boult":8,"Mohammad Shami":8,"Pat Cummins":8,"Sam Curran":8,"Sanju Samson":8,"Marco Jansen":7.5,"Washington Sundar":7.25,"Matheesha Pathirana":7,"Yuzvendra Chahal":7,"Shimron Hetmyer":7,"Nitish Kumar Reddy":6.75,"Yash Dayal":6.5,"Jitesh Sharma":6.5,"Khaleel Ahmed":6.25,"Priyansh Arya":6.25,"Jofra Archer":6,"Cameron Green":5.75,"Ravi Bishnoi":5.5,"Mohammed Siraj":5.5,"Deepak Chahar":5.25,"Kagiso Rabada":5.25,"Venkatesh Iyer":5,"Mitchell Santner":5,"Finn Allen":5,"Nitish Rana":5,"Bhuvneshwar Kumar":4.9,"T Natarajan":4.9,"Ajinkya Rahane":4.9,"Ayush Mhatre":4.8,"Avesh Khan":4.7,"Romario Shepherd":4.7,"Nathan Ellis":4.2,"George Linde":4.1,"Devdutt Padikkal":4.1,"Mukesh Kumar":4,"Quinton de Kock":4,"Tristan Stubbs":4,"Jason Holder":3.9,"Rinku Singh":3.8,"Pathum Nissanka":3.5,"Digvesh Singh":3.5,"Harshal Patel":3.5,"Angkrish Raghuvanshi":3.4,"Akeal Hosein":3.3,"Will Jacks":3.3,"Lungi Ngidi":3.2,"Abishek Porel":3.1,"Shashank Singh":3.1,"Dhruv Jurel":3,"Tushar Deshpande":3,"Vipraj Nigam":3,"Ashutosh Sharma":2.9,"Sai Kishore":2.4,"Aniket Verma":2.3,"Sandeep Sharma":2.3,"Ayush Badoni":2.2,"Rahul Chahar":2.1,"Urvil Patel":2.1,"Azmatullah Omarzai":2,"Tim David":2,"Matt Henry":2,"Suyash Sharma":2,"Vaibhav Arora":2,"Rahul Tripathi":1.7,"Auqib Nabi":1.7,"Shahrukh Khan":1.6,"Jaydev Unadkat":1.6,"Shardul Thakur":1.6,"Sherfane Rutherford":1.5,"Ramandeep Singh":1.5,"Rahul Tewatia":1.5,"Marcus Stoinis":1.4,"MS Dhoni":1.3,"Liam Livingstone":1.1,"Ryan Rickelton":1.1,"Kartik Sharma":1,"Glenn Phillips":0.7,"Mayank Yadav":0.7,"Sameer Rizvi":0.7,"Anshul Kamboj":0.7,"Harpreet Brar":0.7,"Jacob Bethell":0.6,"Mohsin Khan":0.6,"Lockie Ferguson":0.5,"Akash Deep":0.5,"Nandre Burger":0.5,"Vijaykumar Vyshak":0.5,"Vignesh Puthur":0.5,"Rachin Ravindra":0.5,"Dilshan Madushanka":0.5,"Akash Madhwal":0.3,"Anuj Rawat":0.4,"Karun Nair":0.3,"Prithvi Shaw":0.3,"Umran Malik":0.3,"Yash Thakur":0.3,"Manimaran Siddharth":0.3,"Ashwani Kumar":0.3,"Akash Singh":0.3,"Kamindu Mendis":0.3,"Naman Dhir":0.3,"Arshad Khan":0.3,"Abdul Samad":0.3,"Mangesh Yadav":0.3,"Navdeep Saini":0.3,"Spencer Johnson":0.3,"Dasun Shanaka":0.3,"Saurabh Dubey":0.3};
+// Game 36 cumulative totals (after match 36)
+const POINTS_G36={"Abhishek Sharma":598,"Vaibhav Sooryavanshi":560,"Heinrich Klaasen":552,"KL Rahul":541,"Ishan Kishan":517,"Virat Kohli":508,"Prabhsimran Singh":476,"Dhruv Jurel":471,"Jofra Archer":461,"Shubman Gill":460,"Anshul Kamboj":459,"Sanju Samson":458,"Shreyas Iyer":450,"Nitish Kumar Reddy":448,"Jos Buttler":436,"Rajat Patidar":408,"Yashasvi Jaiswal":398,"Priyansh Arya":392,"Devdutt Padikkal":385,"Ravindra Jadeja":371,"Sai Sudharsan":365,"Ravi Bishnoi":361,"Kagiso Rabada":360,"Bhuvneshwar Kumar":354,"Phil Salt":348,"Prasidh Krishna":334,"Tilak Varma":328,"Sameer Rizvi":322,"Mitchell Marsh":320,"Angkrish Raghuvanshi":313,"Ayush Mhatre":311,"Tristan Stubbs":309,"Tim David":293,"Rashid Khan":285,"Washington Sundar":285,"Cameron Green":285,"Aiden Markram":281,"Rishabh Pant":281,"Nitish Rana":281,"Travis Head":280,"Krunal Pandya":279,"Naman Dhir":277,"Axar Patel":253,"Sunil Narine":246,"Pathum Nissanka":246,"Mohammad Shami":244,"Suryakumar Yadav":242,"Rinku Singh":241,"Ajinkya Rahane":240,"Shivam Dube":238,"Kuldeep Yadav":237,"Nandre Burger":235,"Hardik Pandya":232,"Lungi Ngidi":230,"Mohammed Siraj":227,"Ayush Badoni":226,"Arshdeep Singh":225,"Noor Ahmad":222,"Quinton de Kock":221,"Ryan Rickelton":220,"Riyan Parag":216,"Vaibhav Arora":209,"Rohit Sharma":204,"Shashank Singh":203,"Mitchell Santner":194,"Akeal Hosein":189,"Marco Jansen":185,"Mukesh Kumar":183,"Sherfane Rutherford":183,"Ruturaj Gaikwad":179,"Vijaykumar Vyshak":176,"Ramandeep Singh":175,"Aniket Verma":170,"Ashwani Kumar":169,"Varun Chakaravarthy":167,"Shardul Thakur":165,"Glenn Phillips":165,"Avesh Khan":164,"Sandeep Sharma":163,"Mohsin Khan":162,"Dewald Brevis":161,"Romario Shepherd":161,"Shimron Hetmyer":158,"Jitesh Sharma":157,"Nicholas Pooran":148,"Suyash Sharma":147,"Josh Hazlewood":146,"Jaydev Unadkat":144,"Finn Allen":138,"Yuzvendra Chahal":132,"T Natarajan":127,"Manimaran Siddharth":124,"Tushar Deshpande":118,"Digvesh Singh":115,"Abdul Samad":115,"Jasprit Bumrah":110,"Marcus Stoinis":104,"Rahul Tewatia":99,"Shahrukh Khan":87,"Vipraj Nigam":74,"Prashant Veer":72,"Jason Holder":71,"Khaleel Ahmed":70,"Matt Henry":68,"Kartik Sharma":67,"Liam Livingstone":57,"Ashutosh Sharma":56,"Deepak Chahar":48,"Dilshan Madushanka":45,"Venkatesh Iyer":44,"Trent Boult":40,"Pat Cummins":39,"George Linde":39,"Jacob Bethell":23,"Karun Nair":10,"Harshal Patel":9,"Rahul Chahar":8,"Auqib Nabi":5,"Mayank Yadav":4,"Navdeep Saini":2,"Mitchell Starc":0,"Sai Kishore":0,"Azmatullah Omarzai":0,"Matheesha Pathirana":0,"Rachin Ravindra":0,"Will Jacks":0,"Kamindu Mendis":0,"Harpreet Brar":0,"Abishek Porel":0,"MS Dhoni":0,"Akash Singh":0,"Dasun Shanaka":0,"Arshad Khan":0,"Vignesh Puthur":0,"Lockie Ferguson":0,"Rahul Tripathi":0,"Urvil Patel":0,"Yash Dayal":0,"Akash Madhwal":0,"Mangesh Yadav":0,"Prithvi Shaw":0,"Yash Thakur":0,"Anuj Rawat":0,"Umran Malik":0,"Spencer Johnson":0,"Saurabh Dubey":0,"Naman Dhir":277};
+
+// Leg 2 points = G36 cumulative - Leg 1 (for each player's new owner)
+function calcL2(p){ return Math.max(0,(POINTS_G36[p]||0)-(POINTS_L1[p]||0)); }
+function ptsL1(p){ return POINTS_L1[p]||0; }
+function ptsL2(p){ return calcL2(p); }
+function ptsOverall(p, leg){
+  // Overall: leg1 owner gets L1 points, leg2 owner gets L2 points
+  // We build this per-owner so we need both squad contexts
+  return ptsL1(p) + ptsL2(p);
+}
+
+const PRICES={"Hardik Pandya":18,"Virat Kohli":17,"Ishan Kishan":15,"Abhishek Sharma":14.5,"Jasprit Bumrah":14.25,"Tilak Varma":14.25,"Shubman Gill":14,"Suryakumar Yadav":14,"Shivam Dube":14,"Shreyas Iyer":13.75,"Yashasvi Jaiswal":13.5,"Ruturaj Gaikwad":12.75,"Aiden Markram":12.5,"Sai Sudharsan":12.25,"Dewald Brevis":12,"Travis Head":12,"Axar Patel":12,"Vaibhav Sooryavanshi":11.75,"KL Rahul":11.5,"Prabhsimran Singh":11.25,"Ravindra Jadeja":11,"Nicholas Pooran":10.75,"Heinrich Klaasen":10.5,"Rajat Patidar":10.5,"Arshdeep Singh":10.25,"Rohit Sharma":10,"Riyan Parag":10,"Mitchell Marsh":10,"Varun Chakaravarthy":9.75,"Krunal Pandya":9.75,"Phil Salt":9.5,"Prashant Veer":9.25,"Kuldeep Yadav":9,"Noor Ahmad":8.75,"Jos Buttler":8.5,"Rishabh Pant":8.5,"Josh Hazlewood":8.5,"Sunil Narine":8.5,"Prasidh Krishna":8.25,"Mitchell Starc":8,"Rashid Khan":8,"Trent Boult":8,"Mohammad Shami":8,"Pat Cummins":8,"Sanju Samson":8,"Marco Jansen":7.5,"Washington Sundar":7.25,"Matheesha Pathirana":7,"Yuzvendra Chahal":7,"Shimron Hetmyer":7,"Nitish Kumar Reddy":6.75,"Yash Dayal":6.5,"Jitesh Sharma":6.5,"Khaleel Ahmed":6.25,"Priyansh Arya":6.25,"Jofra Archer":6,"Cameron Green":5.75,"Ravi Bishnoi":5.5,"Mohammed Siraj":5.5,"Deepak Chahar":5.25,"Kagiso Rabada":5.25,"Venkatesh Iyer":5,"Mitchell Santner":5,"Finn Allen":5,"Nitish Rana":5,"Bhuvneshwar Kumar":4.9,"T Natarajan":4.9,"Ajinkya Rahane":4.9,"Ayush Mhatre":4.8,"Avesh Khan":4.7,"Romario Shepherd":4.7,"George Linde":4.1,"Devdutt Padikkal":4.1,"Mukesh Kumar":4,"Quinton de Kock":4,"Tristan Stubbs":4,"Jason Holder":3.9,"Rinku Singh":3.8,"Pathum Nissanka":3.5,"Digvesh Singh":3.5,"Harshal Patel":3.5,"Angkrish Raghuvanshi":3.4,"Akeal Hosein":3.3,"Will Jacks":3.3,"Lungi Ngidi":3.2,"Abishek Porel":3.1,"Shashank Singh":3.1,"Dhruv Jurel":3,"Tushar Deshpande":3,"Vipraj Nigam":3,"Ashutosh Sharma":2.9,"Sai Kishore":2.4,"Aniket Verma":2.3,"Sandeep Sharma":2.3,"Ayush Badoni":2.2,"Rahul Chahar":2.1,"Urvil Patel":2.1,"Azmatullah Omarzai":2,"Tim David":2,"Matt Henry":2,"Suyash Sharma":2,"Vaibhav Arora":2,"Rahul Tripathi":1.7,"Auqib Nabi":1.7,"Shahrukh Khan":1.6,"Jaydev Unadkat":1.6,"Shardul Thakur":1.6,"Sherfane Rutherford":1.5,"Ramandeep Singh":1.5,"Rahul Tewatia":1.5,"Marcus Stoinis":1.4,"MS Dhoni":1.3,"Liam Livingstone":1.1,"Ryan Rickelton":1.1,"Kartik Sharma":1,"Glenn Phillips":0.7,"Mayank Yadav":0.7,"Sameer Rizvi":0.7,"Anshul Kamboj":0.7,"Harpreet Brar":0.7,"Jacob Bethell":0.6,"Mohsin Khan":0.6,"Lockie Ferguson":0.5,"Nandre Burger":0.5,"Vijaykumar Vyshak":0.5,"Vignesh Puthur":0.5,"Rachin Ravindra":0.5,"Dilshan Madushanka":0.5,"Akash Madhwal":0.3,"Anuj Rawat":0.4,"Karun Nair":0.3,"Prithvi Shaw":0.3,"Umran Malik":0.3,"Yash Thakur":0.3,"Manimaran Siddharth":0.3,"Ashwani Kumar":0.3,"Akash Singh":0.3,"Kamindu Mendis":0.3,"Naman Dhir":0.3,"Arshad Khan":0.3,"Abdul Samad":0.3,"Mangesh Yadav":0.3,"Navdeep Saini":0.3,"Spencer Johnson":0.3,"Dasun Shanaka":0.3,"Saurabh Dubey":0.3};
 
 const OWNER_COLORS={Lokesh:'#F0A500',Tharun:'#5BA3E8',Gopi:'#82C44A',Moheeth:'#E87AAF',Mama:'#A07CF0',Vikki:'#FF7A5C',Ambu:'#4FC3F7',Ashish:'#C47B3A'};
 
-function pts(p){return POINTS[p]||0}
 function price(p){return PRICES[p]||0.3}
-function vr(p){const c=price(p);return c>0?+(pts(p)/c).toFixed(1):0}
-function ownerOf(p){return Object.entries(SQUADS).find(([,ps])=>ps.includes(p))?.[0]||'?'}
-function total(o){return SQUADS[o].reduce((s,p)=>s+pts(p),0)}
-function ranked(){return Object.keys(SQUADS).map(o=>({o,t:total(o)})).sort((a,b)=>b.t-a.t)}
 function rb(r){return r==='bat'?'rb-bat':r==='bowl'?'rb-bowl':r==='wk'?'rb-wk':'rb-ar'}
 function rl(r){return(r||'ar').toUpperCase()}
 
-const R=ranked(),maxPts=R[0].t;
+// ─── Owner-level totals ────────────────────────────────────────────────────
+function totalL1(owner){ return SQUADS_L1[owner].reduce((s,p)=>s+ptsL1(p),0); }
+function totalL2(owner){ return SQUADS_L2[owner].reduce((s,p)=>s+ptsL2(p),0); }
+function totalOverall(owner){ return totalL1(owner)+totalL2(owner); }
 
-function buildPodium(){
-  const ord=[R[1],R[0],R[2]],cls=['p2','p1','p3'],med=['🥈','🥇','🥉'];
-  document.getElementById('podium').innerHTML=ord.map((x,i)=>`
-    <div class="podium-card ${cls[i]}" onclick="openModal('${x.o}')">
+function ranked(fn){ return Object.keys(SQUADS_L1).map(o=>({o,t:fn(o)})).sort((a,b)=>b.t-a.t); }
+
+const R_L1 = ranked(totalL1);
+const R_L2 = ranked(totalL2);
+const R_OV = ranked(totalOverall);
+
+// ─── Current modal context ─────────────────────────────────────────────────
+let modalCtx = 'overall';
+
+// ─── Shared UI builders ────────────────────────────────────────────────────
+function buildPodium(elId, R, ptsFn, extra, leg){
+  const ord=[R[1],R[0],R[2]], cls=['p2','p1','p3'], med=['🥈','🥇','🥉'];
+  document.getElementById(elId).innerHTML=ord.map((x,i)=>{
+    const ex = extra ? extra(x.o) : '';
+    return `<div class="podium-card ${cls[i]}" onclick="openModal('${x.o}','${leg}')">
       <div class="podium-medal">${med[i]}</div>
       <div class="podium-name">${x.o}</div>
       <div class="podium-pts">${x.t}</div>
       <div class="podium-label">points</div>
-      <div class="podium-meta">${SQUADS[x.o].filter(p=>pts(p)>0).length} players scored</div>
-    </div>`).join('');
+      ${ex}
+    </div>`;
+  }).join('');
 }
 
-function buildLB(){
-  document.getElementById('lbList').innerHTML=R.slice(3).map(({o,t},i)=>`
-    <div class="lb-row" onclick="openModal('${o}')" style="animation-delay:${(i+4)*.07}s">
+function buildLB(elId, R, ptsFn, maxPts, extra, leg){
+  document.getElementById(elId).innerHTML=R.slice(3).map(({o,t},i)=>{
+    const ex = extra ? extra(o) : '';
+    return `<div class="lb-row" onclick="openModal('${o}','${leg}')" style="animation-delay:${(i+4)*.07}s">
       <div class="lb-rank">${i+4}</div>
       <div>
         <div class="lb-name">${o}</div>
-        <div class="lb-meta">${SQUADS[o].filter(p=>pts(p)>0).length} scored &bull; best: ${[...SQUADS[o]].sort((a,b)=>pts(b)-pts(a))[0]}</div>
+        <div class="lb-meta">${ex}</div>
       </div>
       <div>
         <div class="lb-pts">${t}</div>
         <div class="lb-pts-label">pts</div>
       </div>
       <div class="lb-bar-wrap"><div class="lb-bar" style="width:${Math.round(t/maxPts*100)}%"></div></div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
-function buildSquads(){
-  document.getElementById('squadGrid').innerHTML=R.map(({o},i)=>`
-    <div class="squad-card" onclick="openModal('${o}')" style="animation-delay:${i*.07}s">
+function buildSquads(elId, squads, R, ptsFn, leg){
+  document.getElementById(elId).innerHTML=R.map(({o},i)=>{
+    const ps = squads[o];
+    return `<div class="squad-card" onclick="openModal('${o}','${leg}')" style="animation-delay:${i*.07}s">
       <div class="sc-header">
         <div>
           <div style="font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Rank #${i+1}</div>
           <div class="sc-name">${o}</div>
         </div>
-        <div class="sc-pts">${total(o)}</div>
+        <div class="sc-pts">${R[i].t}</div>
       </div>
       <div class="sc-body">
-        ${SQUADS[o].map(p=>`<span class="player-chip ${pts(p)>0?'has-pts':''}">${p}${pts(p)>0?' <b style="color:var(--gold);font-size:10px">'+pts(p)+'</b>':''}</span>`).join('')}
+        ${ps.map(p=>{
+          const pts=ptsFn(p), isTraded=TRADED.has(p)&&leg==='leg2';
+          return `<span class="player-chip ${isTraded?'traded-in':pts>0?'has-pts':''}">${p}${pts>0?' <b style="color:var(--gold);font-size:10px">'+pts+'</b>':''}${isTraded?' <span class="traded-tag">NEW</span>':''}</span>`;
+        }).join('')}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 
-let tChart=null;
-function buildStats(){
-  if(tChart)return;
-  const labels=R.map(x=>x.o),data=R.map(x=>x.t);
-  tChart=new Chart(document.getElementById('teamChart'),{type:'bar',data:{labels,datasets:[{data,backgroundColor:labels.map(o=>OWNER_COLORS[o]),borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y} pts`},backgroundColor:'#1A1A26',titleColor:'#F0EDE8',bodyColor:'#7A7A8C',borderColor:'rgba(255,255,255,0.1)',borderWidth:1}},scales:{x:{grid:{display:false},ticks:{color:'#7A7A8C',font:{size:12}}},y:{min:Math.max(0,Math.min(...data)-40),grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#7A7A8C',font:{size:11}}}}}});
-  const allS=Object.entries(POINTS).filter(([,v])=>v>0).map(([p,v])=>({p,v,owner:ownerOf(p)})).sort((a,b)=>b.v-a.v).slice(0,10);
-  document.getElementById('topScorers').innerHTML=allS.map((x,i)=>`
+let charts = {};
+function buildStats(prefix, R, ptsFn, squads, allPointsMap){
+  if(charts[prefix]) return;
+  const labels=R.map(x=>x.o), data=R.map(x=>x.t);
+  charts[prefix]=new Chart(document.getElementById(prefix+'-teamChart'),{type:'bar',data:{labels,datasets:[{data,backgroundColor:labels.map(o=>OWNER_COLORS[o]),borderRadius:8,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.parsed.y} pts`},backgroundColor:'#1A1A26',titleColor:'#F0EDE8',bodyColor:'#7A7A8C',borderColor:'rgba(255,255,255,0.1)',borderWidth:1}},scales:{x:{grid:{display:false},ticks:{color:'#7A7A8C',font:{size:12}}},y:{min:Math.max(0,Math.min(...data.filter(d=>d>0))-40),grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#7A7A8C',font:{size:11}}}}}});
+
+  const all=Object.values(squads).flat();
+  const uniq=[...new Set(all)];
+  const scored=uniq.map(p=>({p,v:ptsFn(p),owner:ownerOfInSquad(p,squads)})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v).slice(0,10);
+  document.getElementById(prefix+'-topScorers').innerHTML=scored.map((x,i)=>`
     <div style="display:grid;grid-template-columns:26px 1fr auto auto;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)">
       <div style="font-family:'Bebas Neue';font-size:20px;color:var(--muted)">${i+1}</div>
       <div><div style="font-size:14px;font-weight:500">${x.p}</div><div style="font-size:11px;color:var(--muted);margin-top:1px">${x.owner}</div></div>
@@ -269,53 +436,63 @@ function buildStats(){
     </div>`).join('');
 }
 
-let vsCol='vr',vsDir=-1;
-function allVP(){return Object.values(SQUADS).flat().filter(p=>pts(p)>0).map(p=>({p,owner:ownerOf(p),price:price(p),pts:pts(p),vr:vr(p)}))}
+function ownerOfInSquad(p, squads){ return Object.entries(squads).find(([,ps])=>ps.includes(p))?.[0]||'?'; }
 
-function buildValue(){
-  const all=allVP().sort((a,b)=>b.vr-a.vr);
+let vsState={leg1:{col:'vr',dir:-1},leg2:{col:'vr',dir:-1}};
+
+function allVP_leg(leg, squads, ptsFn){
+  return [...new Set(Object.values(squads).flat())].filter(p=>ptsFn(p)>0).map(p=>({p,owner:ownerOfInSquad(p,squads),price:price(p),pts:ptsFn(p),vr:+(ptsFn(p)/price(p)).toFixed(1)}));
+}
+
+function buildValue(leg, squads, ptsFn){
+  const prefix=leg;
+  const all=allVP_leg(leg,squads,ptsFn).sort((a,b)=>b.vr-a.vr);
   const maxVr=all[0]?.vr||1;
-  const bust=Object.values(SQUADS).flat().filter(p=>price(p)>=5).map(p=>({p,owner:ownerOf(p),price:price(p),pts:pts(p),vr:vr(p)})).sort((a,b)=>a.vr-b.vr)[0];
+  const bust=[...all].filter(x=>x.price>=5).sort((a,b)=>a.vr-b.vr)[0]||all[all.length-1];
   const mostPts=[...all].sort((a,b)=>b.pts-a.pts)[0];
-  const teamEff=R.map(({o})=>{const sp=SQUADS[o].filter(p=>pts(p)>0);const avg=sp.length?+(sp.reduce((s,p)=>s+vr(p),0)/sp.length).toFixed(1):0;return{o,avg};}).sort((a,b)=>b.avg-a.avg);
+  const teamEff=Object.keys(squads).map(o=>{
+    const sp=squads[o].filter(p=>ptsFn(p)>0);
+    const avg=sp.length?+(sp.reduce((s,p)=>s+(ptsFn(p)/price(p)),0)/sp.length).toFixed(1):0;
+    return{o,avg};
+  }).sort((a,b)=>b.avg-a.avg);
 
-  document.getElementById('valueHighlights').innerHTML=`
+  document.getElementById(prefix+'-valueHighlights').innerHTML=`
     <div class="value-card gold-card">
       <div class="vc-label">🏅 Best value buy <span class="label-best">TOP VALUE</span></div>
       <div class="vc-player">${all[0].p}</div>
-      <div class="vc-owner">${all[0].owner} &bull; bought for ₹${all[0].price}Cr</div>
+      <div class="vc-owner">${all[0].owner} &bull; ₹${all[0].price}Cr</div>
       <div class="vc-stat pos">${all[0].vr.toFixed(1)} pts/Cr</div>
-      <div class="vc-detail">${all[0].pts} pts from ₹${all[0].price}Cr — extraordinary return</div>
+      <div class="vc-detail">${all[0].pts} pts from ₹${all[0].price}Cr</div>
     </div>
     <div class="value-card bust-card">
       <div class="vc-label">💸 Biggest bust <span class="label-bust">OVERPAID</span></div>
       <div class="vc-player">${bust.p}</div>
-      <div class="vc-owner">${bust.owner} &bull; bought for ₹${bust.price}Cr</div>
+      <div class="vc-owner">${bust.owner} &bull; ₹${bust.price}Cr</div>
       <div class="vc-stat neg">${bust.pts} pts</div>
       <div class="vc-detail">Only ${bust.pts} pts for ₹${bust.price}Cr — ${bust.vr.toFixed(1)} pts/Cr</div>
     </div>
     <div class="value-card">
       <div class="vc-label">🔥 Top scorer <span class="label-eff">MOST PTS</span></div>
       <div class="vc-player">${mostPts.p}</div>
-      <div class="vc-owner">${mostPts.owner} &bull; bought for ₹${mostPts.price}Cr</div>
+      <div class="vc-owner">${mostPts.owner} &bull; ₹${mostPts.price}Cr</div>
       <div class="vc-stat neu">${mostPts.pts} pts</div>
       <div class="vc-detail">${mostPts.vr.toFixed(1)} pts/Cr efficiency</div>
     </div>
     <div class="value-card">
       <div class="vc-label">📊 Most efficient squad <span class="label-best">BEST ROI</span></div>
       <div class="vc-player">${teamEff[0].o}</div>
-      <div class="vc-owner">Highest avg pts/Cr across scored players</div>
+      <div class="vc-owner">Highest avg pts/Cr</div>
       <div class="vc-stat pos">${teamEff[0].avg} avg pts/Cr</div>
       <div class="vc-detail">${teamEff.map(t=>`${t.o}: ${t.avg}`).join(' · ')}</div>
     </div>`;
-  renderVT(all,maxVr);
+  renderVT(prefix, all, maxVr);
 }
 
-function renderVT(data,maxVr){
-  document.getElementById('valueTableBody').innerHTML=data.map(({p,owner,price,pts,vr})=>{
+function renderVT(prefix, data, maxVr){
+  document.getElementById(prefix+'-valueTableBody').innerHTML=data.map(({p,owner,price,pts,vr})=>{
     const pct=Math.round(vr/maxVr*100),col=vr>=50?'#4CAF7D':vr>=20?'#F0A500':'#E05C5C';
     return `<tr>
-      <td><div style="font-size:13px;font-weight:500">${p}</div><span class="rb ${rb(ROLES[p])}" style="margin-top:2px;display:inline-block">${rl(ROLES[p])}</span></td>
+      <td><div style="font-size:13px;font-weight:500">${p}${TRADED.has(p)&&prefix==='leg2'?'<span class="traded-tag">NEW</span>':''}</div><span class="rb ${rb(ROLES[p])}" style="margin-top:2px;display:inline-block">${rl(ROLES[p])}</span></td>
       <td><span style="font-size:12px;color:${OWNER_COLORS[owner]||'var(--muted)'};font-weight:500">${owner}</span></td>
       <td>₹${price}Cr</td><td>${pts}</td>
       <td style="white-space:nowrap"><span style="font-weight:600;color:${col}">${vr.toFixed(1)}</span><span class="vr-bar-wrap"><span class="vr-bar" style="width:${pct}%;background:${col}"></span></span></td>
@@ -323,47 +500,174 @@ function renderVT(data,maxVr){
   }).join('');
 }
 
-function sortTable(col){
-  if(vsCol===col)vsDir*=-1;else{vsCol=col;vsDir=-1;}
-  document.querySelectorAll('.sort-arrow').forEach(e=>e.textContent='');
-  document.getElementById('arr-'+col).textContent=vsDir===-1?'▼':'▲';
-  const all=allVP(),maxVr=Math.max(...all.map(x=>x.vr));
-  const km={name:'p',owner:'owner',price:'price',pts:'pts',vr:'vr'};const k=km[col];
-  all.sort((a,b)=>typeof a[k]==='string'?a[k].localeCompare(b[k])*vsDir:(b[k]-a[k])*-vsDir);
-  renderVT(all,maxVr);
+function sortTable(leg, col){
+  const s=vsState[leg];
+  if(s.col===col)s.dir*=-1;else{s.col=col;s.dir=-1;}
+  document.querySelectorAll(`#leg-${leg} .sort-arrow`).forEach(e=>e.textContent='');
+  const arr=document.getElementById(leg+'-arr-'+col);
+  if(arr) arr.textContent=s.dir===-1?'▼':'▲';
+  const squads=leg==='leg2'?SQUADS_L2:SQUADS_L1;
+  const ptsFn=leg==='leg2'?ptsL2:ptsL1;
+  const all=allVP_leg(leg,squads,ptsFn);
+  const maxVr=Math.max(...all.map(x=>x.vr));
+  const km={name:'p',owner:'owner',price:'price',pts:'pts',vr:'vr'},k=km[col];
+  all.sort((a,b)=>typeof a[k]==='string'?a[k].localeCompare(b[k])*s.dir:(b[k]-a[k])*-s.dir);
+  renderVT(leg,all,maxVr);
 }
 
-function openModal(owner){
+// ─── Modal ─────────────────────────────────────────────────────────────────
+function openModal(owner, ctx){
+  modalCtx=ctx||'overall';
+  const squads = ctx==='leg2' ? SQUADS_L2 : SQUADS_L1;
+  const ptsFn = ctx==='leg2' ? ptsL2 : ptsL1;
+  // For overall, show both L1 and L2 breakdown
+  const isOverall = ctx==='overall';
+
+  let R, totalFn;
+  if(ctx==='leg2'){R=R_L2;totalFn=totalL2;}
+  else if(ctx==='leg1'){R=R_L1;totalFn=totalL1;}
+  else{R=R_OV;totalFn=totalOverall;}
+
   const rank=R.findIndex(x=>x.o===owner)+1;
-  const spent=+SQUADS[owner].reduce((s,p)=>s+(PRICES[p]||0.3),0).toFixed(2);
+  const spent=+squads[owner].reduce((s,p)=>s+(PRICES[p]||0.3),0).toFixed(2);
   document.getElementById('modalOwner').textContent=owner;
-  document.getElementById('modalTotal').textContent=`Rank #${rank} · ${total(owner)} pts · ₹${spent}Cr spent`;
-  document.getElementById('modalPlayers').innerHTML=[...SQUADS[owner]].sort((a,b)=>pts(b)-pts(a)).map(p=>{
-    const v=vr(p),vc=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
-    return `<div class="modal-player">
-      <div><div class="mp-name">${p}</div><div class="mp-cost">₹${price(p)}Cr</div></div>
-      <span class="rb ${rb(ROLES[p])}">${rl(ROLES[p])}</span>
-      <div class="mp-pts ${pts(p)===0?'zero':''}">${pts(p)}</div>
-      <div class="mp-vr ${pts(p)>0?vc:'vr-bad'}">${pts(p)>0?v.toFixed(1)+'/Cr':'—'}</div>
-    </div>`;}).join('');
+
+  let totalLine = `Rank #${rank} · ${totalFn(owner)} pts`;
+  if(isOverall) totalLine += ` (L1: ${totalL1(owner)} + L2: ${totalL2(owner)})`;
+  totalLine += ` · ₹${spent}Cr spent`;
+  document.getElementById('modalTotal').textContent=totalLine;
+
+  // Build player rows
+  let playersHTML = '';
+
+  if(isOverall){
+    // Section 1: All L1 players sorted by L1 pts, traded-out ones tagged
+    const l1sorted = [...SQUADS_L1[owner]].sort((a,b)=>ptsL1(b)-ptsL1(a));
+    const tradedOutPlayers = l1sorted.filter(p => TRADED.has(p) && !SQUADS_L2[owner].includes(p));
+    const tradedInPlayers  = SQUADS_L2[owner].filter(p => TRADED.has(p) && !SQUADS_L1[owner].includes(p));
+
+    // Section header
+    playersHTML += `<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:4px 0 8px;border-bottom:1px solid var(--border);margin-bottom:4px">Leg 1 Squad — ${totalL1(owner)} pts</div>`;
+
+    playersHTML += l1sorted.map(p=>{
+      const myPts = ptsL1(p);
+      const v=+(myPts/price(p)).toFixed(1), vc=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
+      const isOut = TRADED.has(p) && !SQUADS_L2[owner].includes(p);
+      return `<div class="modal-player" style="${isOut?'opacity:0.6':''}">
+        <div>
+          <div class="mp-name">${p}${isOut?'<span class="traded-tag" style="background:rgba(224,92,92,.15);color:var(--red);margin-left:6px">OUT L2</span>':''}</div>
+          <div class="mp-cost">₹${price(p)}Cr</div>
+        </div>
+        <span class="rb ${rb(ROLES[p])}">${rl(ROLES[p])}</span>
+        <div class="mp-pts ${myPts===0?'zero':''}">${myPts}</div>
+        <div class="mp-vr ${myPts>0?vc:'vr-bad'}">${myPts>0?v.toFixed(1)+'/Cr':'—'}</div>
+      </div>`;
+    }).join('');
+
+    // Section 2: Traded-IN players with their L2 pts
+    if(tradedInPlayers.length > 0){
+      playersHTML += `<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);padding:14px 0 8px;border-bottom:1px solid rgba(91,163,232,.2);margin-bottom:4px">🔄 Traded In — Leg 2 Points</div>`;
+      playersHTML += [...tradedInPlayers].sort((a,b)=>ptsL2(b)-ptsL2(a)).map(p=>{
+        const myPts = ptsL2(p);
+        const v=+(myPts/price(p)).toFixed(1), vc=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
+        return `<div class="modal-player" style="border-left:2px solid rgba(91,163,232,.4);padding-left:10px;margin-left:-10px">
+          <div>
+            <div class="mp-name">${p}<span class="traded-tag" style="margin-left:6px">IN L2</span></div>
+            <div class="mp-cost">₹${price(p)}Cr</div>
+          </div>
+          <span class="rb ${rb(ROLES[p])}">${rl(ROLES[p])}</span>
+          <div class="mp-pts ${myPts===0?'zero':''}">${myPts}</div>
+          <div class="mp-vr ${myPts>0?vc:'vr-bad'}">${myPts>0?v.toFixed(1)+'/Cr':'—'}</div>
+        </div>`;
+      }).join('');
+    }
+
+  } else {
+    // Leg 1 or Leg 2 — simple sorted list
+    const ps = squads[owner];
+    playersHTML = [...ps].sort((a,b)=>ptsFn(b)-ptsFn(a)).map(p=>{
+      const myPts = ptsFn(p);
+      const v=+(myPts/price(p)).toFixed(1), vc=v>=50?'vr-good':v>=15?'vr-mid':'vr-bad';
+      const isNew = ctx==='leg2' && TRADED.has(p) && !SQUADS_L1[owner].includes(p);
+      return `<div class="modal-player">
+        <div>
+          <div class="mp-name">${p}${isNew?'<span class="traded-tag" style="margin-left:6px">IN L2</span>':''}</div>
+          <div class="mp-cost">₹${price(p)}Cr</div>
+        </div>
+        <span class="rb ${rb(ROLES[p])}">${rl(ROLES[p])}</span>
+        <div class="mp-pts ${myPts===0?'zero':''}">${myPts}</div>
+        <div class="mp-vr ${myPts>0?vc:'vr-bad'}">${myPts>0?v.toFixed(1)+'/Cr':'—'}</div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('modalPlayers').innerHTML = playersHTML;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
+
 function closeModal(e){
   if(e&&e.target!==document.getElementById('modal'))return;
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow='';
 }
 
-function showTab(name,btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+// ─── Tab management ────────────────────────────────────────────────────────
+const innerTabState={overall:'standings',leg1:'standings',leg2:'standings'};
+
+function showTab(leg, name, btn){
+  const prefix = leg;
+  document.querySelectorAll(`#leg-${leg} .tab`).forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  ['standings','squads','stats','value'].forEach(t=>document.getElementById('tab-'+t).style.display=t===name?'block':'none');
-  if(name==='stats')setTimeout(buildStats,50);
-  if(name==='value')setTimeout(buildValue,50);
+  ['standings','squads','stats','value'].forEach(t=>{
+    const el=document.getElementById(`${prefix}-tab-${t}`);
+    if(el) el.style.display=t===name?'block':'none';
+  });
+  innerTabState[leg]=name;
+  if(name==='stats'){
+    if(leg==='overall') setTimeout(()=>buildStats('overall',R_OV,p=>ptsL1(p)+ptsL2(p),SQUADS_L1),50);
+    else if(leg==='leg1') setTimeout(()=>buildStats('leg1',R_L1,ptsL1,SQUADS_L1),50);
+    else setTimeout(()=>buildStats('leg2',R_L2,ptsL2,SQUADS_L2),50);
+  }
+  if(name==='value'){
+    if(leg==='leg1') setTimeout(()=>buildValue('leg1',SQUADS_L1,ptsL1),50);
+    else if(leg==='leg2') setTimeout(()=>buildValue('leg2',SQUADS_L2,ptsL2),50);
+  }
 }
 
-buildPodium();buildLB();buildSquads();
+function showLeg(leg, btn){
+  modalCtx=leg;
+  document.querySelectorAll('.main-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.leg-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('leg-'+leg).classList.add('active');
+}
+
+// ─── Boot ──────────────────────────────────────────────────────────────────
+// Overall
+const maxOv = R_OV[0].t;
+buildPodium('overall-podium', R_OV, totalOverall, (o)=>`
+  <div class="podium-breakdown">
+    <span class="pb-chip pb-l1">L1: ${totalL1(o)}</span>
+    <span class="pb-chip pb-l2">L2: ${totalL2(o)}</span>
+  </div>
+  <div class="podium-meta">${SQUADS_L1[o].filter(p=>ptsL1(p)>0).length} scored L1</div>`, 'overall');
+buildLB('overall-lbList', R_OV, totalOverall, maxOv, (o)=>`
+  <span class="lb-chip pb-l1" style="background:rgba(240,165,0,.1);color:var(--gold);font-size:10px;padding:1px 6px;border-radius:6px">L1: ${totalL1(o)}</span>
+  <span class="lb-chip pb-l2" style="background:rgba(91,163,232,.1);color:var(--blue);font-size:10px;padding:1px 6px;border-radius:6px">L2: ${totalL2(o)}</span>`, 'overall');
+buildSquads('overall-squadGrid', SQUADS_L1, R_OV, ptsL1, 'overall');
+
+// Leg 1
+const maxL1 = R_L1[0].t;
+buildPodium('leg1-podium', R_L1, totalL1, (o)=>`<div class="podium-meta">${SQUADS_L1[o].filter(p=>ptsL1(p)>0).length} players scored &bull; M1–35</div>`, 'leg1');
+buildLB('leg1-lbList', R_L1, totalL1, maxL1, (o)=>`${SQUADS_L1[o].filter(p=>ptsL1(p)>0).length} scored &bull; best: ${[...SQUADS_L1[o]].sort((a,b)=>ptsL1(b)-ptsL1(a))[0]}`, 'leg1');
+buildSquads('leg1-squadGrid', SQUADS_L1, R_L1, ptsL1, 'leg1');
+
+// Leg 2
+const maxL2 = Math.max(R_L2[0].t, 1);
+buildPodium('leg2-podium', R_L2, totalL2, (o)=>`<div class="podium-meta">After Match 36 &bull; M36+</div>`, 'leg2');
+buildLB('leg2-lbList', R_L2, totalL2, maxL2, (o)=>`${SQUADS_L2[o].filter(p=>ptsL2(p)>0).length} scored &bull; best: ${[...SQUADS_L2[o]].sort((a,b)=>ptsL2(b)-ptsL2(a))[0]}`, 'leg2');
+buildSquads('leg2-squadGrid', SQUADS_L2, R_L2, ptsL2, 'leg2');
 </script>
 </body>
 </html>
